@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "388081086807",
+    "project_id": "schoolcab-4d2a0",
+    "storage_bucket": "schoolcab-4d2a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388081086807:android:f17febf4b02aa431980e12",
+        "android_client_info": {
+          "package_name": "com.example.schoolcab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388081086807-f234g579m2c1kv2p9ufape5uk8atg3hr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.schoolcab",
+            "certificate_hash": "15d614c9a4c6c975a4599cc5a167893ab4e550cf"
+          }
+        },
+        {
+          "client_id": "388081086807-ls2vgfkh0vonlneq78keukf9c1l70s2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeoU5LZkYpjfEqc5kxRs6C2HpCzXSh66A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388081086807-ls2vgfkh0vonlneq78keukf9c1l70s2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
