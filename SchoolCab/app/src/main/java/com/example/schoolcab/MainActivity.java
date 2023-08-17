@@ -16,9 +16,10 @@ public class MainActivity extends AppCompatActivity {
         Button schoolButton = findViewById(R.id.schoolButton);
         Button studentButton = findViewById(R.id.studentButton);
 
-//        schoolButton.setOnClickListener(v -> {
-//            // Handle school button click
-//        });
+        schoolButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SchoolNameActivity.class);
+            startActivity(intent);
+        });
 
         studentButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, StudentRegistrationActivity.class);
