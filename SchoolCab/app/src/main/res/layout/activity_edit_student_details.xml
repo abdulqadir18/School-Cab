@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#635C5C"
+        android:text="Edit Student"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="40dp"
+        android:layout_marginBottom="10dp"
+
+        />
+    <!--   Name  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Name    : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="wrap_content"
+            android:text="samoil"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:inputType="text"
+
+            />
+    </LinearLayout>
+    <!--    Roll No : -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Roll No    : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:id="@+id/edtRollNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="text"
+
+            />
+    </LinearLayout>
+
+    <!--    Parent / Guardian Name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Guardian  : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtGuardian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="text"
+
+            />
+    </LinearLayout>
+
+
+    <!--    Phone No. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Contact No     : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtPhoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="phone"
+
+            />
+    </LinearLayout>
+
+    <!--    Email -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Email     : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+
+            />
+    </LinearLayout>
+
+    <!--    Default Address-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Address     : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="textPostalAddress"
+
+            />
+    </LinearLayout>
+
+    <!--    Class  Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Class    : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtClass"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="number"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="section    : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtSection"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            />
+    </LinearLayout>
+
+    <!--    Age And Sex and weight-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Age   : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="number"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Weight (kg)  : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtWeight"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="number"
+            />
+    </LinearLayout>
+
+    <!--    Default Pickup Location  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Default pickPoint   : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:id="@+id/edtDefaultAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="textPostalAddress"
+            />
+
+
+    </LinearLayout>
+
+    <!--    Sex-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="sex   : "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            />
+
+
+        <EditText
+            android:id="@+id/edtSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="center"
+            android:inputType="text"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Update"
+            android:background="#635C5C"
+            android:textSize="20dp"
+            android:backgroundTint="#635C5C"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
