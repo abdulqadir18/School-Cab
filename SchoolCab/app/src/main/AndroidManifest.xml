@@ -11,6 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolCab"
         tools:targetApi="31">
+
+        <activity
+            android:name=".EditStudentDetails"
+            android:exported="false" />
+        <activity
+            android:name=".SearchStudent"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudent"
+            android:exported="false" />
         <activity
             android:name=".SchoolLoginActivity"
             android:exported="false"
