@@ -22,6 +22,11 @@
             android:name=".AddStudent"
             android:exported="false" />
         <activity
+            android:name=".SchoolLoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_school_login"
+            android:theme="@style/Theme.SchoolCab.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -32,6 +37,15 @@
         </activity>
         <activity
             android:name=".StudentRegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SchoolNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SchoolRegistrationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SchoolDashboardActivity"
             android:screenOrientation="portrait" />
     </application>
 
