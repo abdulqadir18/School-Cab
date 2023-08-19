@@ -3,6 +3,8 @@
     <string name="school_cab">School Cab</string>
     <string name="school">School</string>
     <string name="student">Student</string>
+    <string name="title_activity_school_login">SchoolLoginActivity</string>
+
 
 
     <string-array name="planets_array">
