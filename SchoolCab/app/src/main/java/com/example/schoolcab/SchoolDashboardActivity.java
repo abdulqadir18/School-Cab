@@ -1,8 +1,10 @@
 package com.example.schoolcab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,18 +23,27 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         Button studentButton = findViewById(R.id.student_details_button);
         Button attendanceButton = findViewById(R.id.attendance_button);
         busButton.setOnClickListener(v -> {
+            Toast.makeText(SchoolDashboardActivity.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
 
         });
 
         busCoordinatorButton.setOnClickListener(v -> {
+            Toast.makeText(SchoolDashboardActivity.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
+
 
         });
 
         studentButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SchoolDashboardActivity.this, StudentAddUpdatePage.class);
+//            Sending id of the school
+//            intent.putExtra("data", jsonString);
+//            intent.putExtra("id" ,document.getId());
+            startActivity(intent);
 
         });
 
        attendanceButton.setOnClickListener(v -> {
+           Toast.makeText(SchoolDashboardActivity.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
 
         });
     }

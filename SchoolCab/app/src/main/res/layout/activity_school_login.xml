@@ -12,7 +12,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="text"
-        android:text="School Id"
+         android:hint="School Id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="Password"
+        android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/school_id" />

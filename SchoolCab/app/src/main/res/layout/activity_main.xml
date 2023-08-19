@@ -30,18 +30,7 @@
         android:id="@+id/studentButton"
         android:layout_marginTop="16dp"/>
 
-    <Button
-        android:id="@+id/newStudentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="NewStudent" />
-    <Button
-        android:id="@+id/searchStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Search Student" />
+
 
 
 

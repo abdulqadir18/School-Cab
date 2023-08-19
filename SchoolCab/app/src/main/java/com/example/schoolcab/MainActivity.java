@@ -20,8 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button schoolButton = findViewById(R.id.schoolButton);
         Button studentButton = findViewById(R.id.studentButton);
-        Button newStudentButton = findViewById(R.id.newStudentButton);
-        Button searchStudent = findViewById(R.id.searchStudent);
+
 
 
         schoolButton.setOnClickListener(v -> {
@@ -34,16 +33,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        newStudentButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AddStudent.class);
-            startActivity(intent);
-        });
 
-
-        searchStudent.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SearchStudent.class);
-            startActivity(intent);
-        });
 
 //        uploadStudent.setOnClickListener(v -> {
 //            Intent intent = new Intent(MainActivity.this, UploadStudents.class);

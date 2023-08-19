@@ -6,7 +6,6 @@
     <string name="title_activity_school_login">SchoolLoginActivity</string>
 
 
-
     <string-array name="planets_array">
         <item>M</item>
         <item>F</item>

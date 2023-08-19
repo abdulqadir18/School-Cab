@@ -153,7 +153,7 @@ public class EditStudentDetails extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                           Log.d("SUCCESS" , "data written succesfully");
 
-                            Intent intent = new Intent(EditStudentDetails.this, MainActivity.class);
+                            Intent intent = new Intent(EditStudentDetails.this, StudentAddUpdatePage.class);
                             startActivity(intent);
 
                             Toast.makeText(EditStudentDetails.this, "Student Updated successfully!", Toast.LENGTH_SHORT).show();
