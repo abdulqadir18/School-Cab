@@ -1,8 +1,11 @@
 package com.example.schoolcab;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +13,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,93 +42,94 @@ import java.util.List;
 import java.util.Map;
 
 public class UploadStudents extends AppCompatActivity {
-    private static final int PICK_EXCEL_REQUEST = 100;
-    private FirebaseFirestore firestore;
+    private ActivityResultLauncher<Intent> filePickerLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_upload_students);
-//
-//        firestore = FirebaseFirestore.getInstance();
-//
-//        Button uploadButton = findViewById(R.id.uploadButton);
-//        uploadButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Open the file picker to select an Excel file
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.setType("*/*");
-//                startActivityForResult(intent, PICK_EXCEL_REQUEST);
-//            }
-//        });
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == PICK_EXCEL_REQUEST && resultCode == RESULT_OK) {
-//            if (data != null && data.getData() != null) {
-//                // Handle the selected Excel file
-//                handleExcelFile(data.getData());
-//            }
-//        }
-//    }
-//
-//    private void handleExcelFile(android.net.Uri fileUri) {
-//        try {
-//            FileInputStream excelFile = new FileInputStream(new File(fileUri.getPath()));
-//            Workbook workbook = new XSSFWorkbook(excelFile);
-//            Sheet sheet = workbook.getSheetAt(0); // Assuming the data is in the first sheet
-//
-//            List<NewStudent> studentList = new ArrayList<>();
-//
-//            for (Row row : sheet) {
-//                if (row.getRowNum() == 0) {
-//                    // Skip the header row
-//                    continue;
-//                }
-//
-//                NewStudent student = new NewStudent();
-//                student.setName(row.getCell(0).getStringCellValue());
-//                student.setRollNo(row.getCell(1).getStringCellValue());
-//                student.setGuardian(row.getCell(2).getStringCellValue());
-//                student.setPhoneNo((int)row.getCell(3).getNumericCellValue());
-//                student.setAddress(row.getCell(4).getStringCellValue());
-//                student.setDefaultAddress(row.getCell(5).getStringCellValue());
-//                student.setStandard((int) row.getCell(6).getNumericCellValue());
-//                student.setEmail(row.getCell(7).getStringCellValue());
-//                student.setSection(row.getCell(8).getStringCellValue());
-//                student.setSex(row.getCell(9).getStringCellValue());
-//                student.setAge((int) row.getCell(10).getNumericCellValue());
-//                student.setWeight((int) row.getCell(11).getNumericCellValue());
-//
-//                // Add other fields as needed
-//
-//                studentList.add(student);
-//            }
-//
-//            // Now, studentList contains your data from the Excel file
-//
-//            // Write student data to Firestore
-//            CollectionReference studentsCollection = firestore.collection("students");
-//
-//            for (NewStudent student : studentList) {
-//                studentsCollection.add(student)
-//                        .addOnSuccessListener(documentReference -> {
-////                            Toast.makeText(this, "Student registered successfully!", Toast.LENGTH_SHORT).show();
-//                        })
-//                        .addOnFailureListener(e -> {
-//                            Log.e("StudentRegistration", "Error registering student", e);
-////                            Toast.makeText(this, "Error registering student", Toast.LENGTH_SHORT).show();
-//                        });
-//            }
-//
-//            // Close the workbook
-//            workbook.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        setContentView(R.layout.activity_upload_students);
+
+        Button chooseFileButton = findViewById(R.id.uploadButton);
+
+        // Initialize the ActivityResultLauncher
+        filePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            Uri fileUri = data.getData();
+                            // Read the selected Excel file
+                            List<NewStudent> student = readExcelFile(fileUri);
+                            // Process and store the data as needed
+                        }
+                    }
+                });
+
+        chooseFileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open a file picker
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); // for .xlsx files
+                filePickerLauncher.launch(intent);
+            }
+        });
+    }
+
+    // Define the readExcelFile method here or in a separate class
+    private List<NewStudent> readExcelFile(Uri fileUri) {
+        List<NewStudent> students = new ArrayList<>();
+
+        try {
+            // Open the Excel file using JExcelApi
+            InputStream inputStream = getContentResolver().openInputStream(fileUri);
+            Workbook workbook = Workbook.getWorkbook(inputStream);
+
+            // Assuming data is in the first sheet
+            Sheet sheet = workbook.getSheet(0);
+
+            for (int row = 1; row < sheet.getRows(); row++) {
+                Cell[] cells = sheet.getRow(row);
+
+//               parsing the rows one by one
+                String name = cells[0].getContents();
+                String rollNo = cells[1].getContents();
+                String guardian = cells[2].getContents();
+                String phoneNo = cells[3].getContents();
+                String email = cells[4].getContents();
+                String address = cells[5].getContents();
+                int standard = Integer.parseInt(cells[6].getContents());
+                String section = cells[7].getContents();
+                int age = Integer.parseInt(cells[8].getContents());
+                int weight = Integer.parseInt(cells[9].getContents());
+                String defaultAddress = cells[10].getContents();
+                String sex = cells[11].getContents();
+
+                Log.d("StudentRegistration", row+"        Name: " + name + ", Password: " + rollNo);
+
+                NewStudent student = new NewStudent(); // Create a Student object
+                student.setName(name);
+                student.setRollNo(rollNo);
+                student.setGuardian(guardian);
+                student.setPhoneNo(phoneNo);
+                student.setAddress(address);
+                student.setDefaultAddress(defaultAddress);
+                student.setStandard(standard);
+                student.setSection(section);
+                student.setSex(sex);
+                student.setAge(age);
+                student.setWeight(weight);
+                student.setEmail(email);
+
+                students.add(student);
+            }
+
+            workbook.close();
+        } catch (IOException | BiffException e) {
+            e.printStackTrace();
+        }
+
+        return students;
     }
 }

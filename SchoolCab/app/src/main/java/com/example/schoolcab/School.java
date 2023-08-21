@@ -7,6 +7,7 @@ public class School {
     private Boolean verifiedStatus;
     private String schoolId;
     private String password;
+    private String email;
 
     public School(String name, String board, Boolean verifiedStatus, String schoolId, String password) {
         this.name = name;
@@ -26,6 +27,14 @@ public class School {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getBoard() {

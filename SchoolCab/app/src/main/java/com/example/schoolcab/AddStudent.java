@@ -1,5 +1,6 @@
 package com.example.schoolcab;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,12 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class AddStudent extends AppCompatActivity {
 
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -23,14 +32,17 @@ public class AddStudent extends AppCompatActivity {
 
 
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
 
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(v -> {
             // Collect student details from EditText fields
+
             EditText edtName = findViewById(R.id.edtName);
             EditText edtRollNo = findViewById(R.id.edtRollNo);
             EditText edtGuardian = findViewById(R.id.edtGuardian);
+            EditText edtEmail = findViewById(R.id.edtEmail);
             EditText edtPhoneNo = findViewById(R.id.edtPhoneNo);
             EditText edtAddress = findViewById(R.id.edtAddress);
             EditText edtDefaultAddress = findViewById(R.id.edtDefaultAddress);
@@ -45,7 +57,8 @@ public class AddStudent extends AppCompatActivity {
             String name = edtName.getText().toString();
             String rollNo = edtRollNo.getText().toString();
             String guardian = edtGuardian.getText().toString();
-            int phoneNo = Integer.parseInt(edtPhoneNo.getText().toString());
+            String email = edtEmail.getText().toString();
+            String phoneNo = edtPhoneNo.getText().toString();
             String address = edtAddress.getText().toString();
             String  defaultAddress = edtDefaultAddress.getText().toString();
             int standard = Integer.parseInt(edtClass.getText().toString());
@@ -71,19 +84,47 @@ public class AddStudent extends AppCompatActivity {
             student.setSex(sex);
             student.setAge(age);
             student.setWeight(weight);
+            student.setEmail(email);
 
 
+//            Creating a authenication user in firebase
+            mAuth.createUserWithEmailAndPassword(email, "1234567890")
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // User signup successful
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                String userId = user.getUid();
 
-            CollectionReference studentsCollection = db.collection("students");
+                                // Save additional user information to Firestore
+                                DocumentReference userRef = db.collection("students").document(userId);
 
-            studentsCollection.add(student)
-                    .addOnSuccessListener(documentReference -> {
-                        Toast.makeText(this, "Student registered successfully!", Toast.LENGTH_SHORT).show();
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e("StudentRegistration", "Error registering student", e);
-                        Toast.makeText(this, "Error registering student", Toast.LENGTH_SHORT).show();
+//                                Saving Additional information of user in fireStore with same id
+                                userRef.set(student)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    // User information saved to Firestore successfully
+                                            Toast.makeText(AddStudent.this, "Student registered successfully!", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    // Handle Firestore document creation failure
+                                                    Toast.makeText(AddStudent.this, "Error saving user data to Firestore.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+
+                            } else {
+                                // Handle signup failure
+                                Toast.makeText(AddStudent.this, "Signup failed.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     });
+
+
+
+
 
 
         });

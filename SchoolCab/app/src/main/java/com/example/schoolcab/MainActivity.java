@@ -14,12 +14,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
-
         Button schoolButton = findViewById(R.id.schoolButton);
         Button studentButton = findViewById(R.id.studentButton);
+        Button uploadButton = findViewById(R.id.upload);
 
 
 
@@ -29,7 +26,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         studentButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, StudentRegistrationActivity.class);
+            Intent intent = new Intent(MainActivity.this, StudentLogin.class);
+            startActivity(intent);
+        });
+
+        uploadButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, UploadStudents.class);
             startActivity(intent);
         });
 

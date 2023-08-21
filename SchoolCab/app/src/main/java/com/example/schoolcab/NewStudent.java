@@ -4,7 +4,7 @@ public class NewStudent {
     private String name;
     private String rollNo;
     private String guardian;
-    private int phoneNo;
+    private String phoneNo;
     private String address;
     private String defaultAddress;
     private int standard;
@@ -45,11 +45,11 @@ public class NewStudent {
     }
 
     // Getter and setter for phoneNo
-    public int getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 

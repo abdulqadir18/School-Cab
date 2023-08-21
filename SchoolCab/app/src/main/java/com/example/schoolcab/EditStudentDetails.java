@@ -113,7 +113,7 @@ public class EditStudentDetails extends AppCompatActivity {
             String name1 = edtName.getText().toString();
             String rollNo1 = edtRollNo.getText().toString();
             String guardian1 = edtGuardian.getText().toString();
-            int phoneNo1 = Integer.parseInt(edtPhoneNo.getText().toString());
+            String phoneNo1 = edtPhoneNo.getText().toString();
             String address1 = edtAddress.getText().toString();
             String  defaultAddress1 = edtDefaultAddress.getText().toString();
             int standard1 = Integer.parseInt(edtClass.getText().toString());

@@ -75,6 +75,20 @@
         app:layout_constraintTop_toBottomOf="@+id/school_id"
         app:layout_constraintVertical_bias="0.294" />
 
+    <EditText
+        android:id="@+id/school_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/school_id"
+        app:layout_constraintVertical_bias="0.321" />
+
 
     <Button
         android:id="@+id/register_button"
@@ -86,5 +100,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/school_password"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintVertical_bias="0.421" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
