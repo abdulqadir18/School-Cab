@@ -14,6 +14,7 @@ public class NewStudent {
     private int age;
     private int weight;
 
+    private String schoolId;
     public NewStudent() {
         // Default constructor required for Firestore
     }
@@ -25,7 +26,13 @@ public class NewStudent {
         this.name = name;
     }
 
+    public String getSchoolId() {
+        return schoolId;
+    }
 
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
     // Getter and setter for rollNo
     public String getRollNo() {
         return rollNo;

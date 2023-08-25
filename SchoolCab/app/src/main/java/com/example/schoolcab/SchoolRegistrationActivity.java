@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -76,7 +77,15 @@ public class SchoolRegistrationActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // User signup successful
                                     FirebaseUser user = mAuth.getCurrentUser();
+
                                     String schoolId = user.getUid();
+
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName("school")
+                                            .build();
+
+
+                                    user.updateProfile(profileUpdates);
 
                                     // Save additional School information to Firestore
                                     DocumentReference userRef = db.collection("schools").document(schoolId);

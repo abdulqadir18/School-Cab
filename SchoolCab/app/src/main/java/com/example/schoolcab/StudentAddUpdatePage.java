@@ -18,6 +18,7 @@ public class StudentAddUpdatePage extends AppCompatActivity {
         Button addStudent = findViewById(R.id.addStudent);
         Button updateStudent = findViewById(R.id.updateStudent);
         Button deleteStudent = findViewById(R.id.deleteStudent);
+        Button uploadStudent = findViewById(R.id.uploadStudent);
 
         addStudent.setOnClickListener(v -> {
             Intent intent = new Intent(StudentAddUpdatePage.this, AddStudent.class);
@@ -32,6 +33,12 @@ public class StudentAddUpdatePage extends AppCompatActivity {
         deleteStudent.setOnClickListener(v -> {
             Toast.makeText(StudentAddUpdatePage.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
 
+        });
+
+
+        uploadStudent.setOnClickListener(v -> {
+            Intent intent = new Intent(StudentAddUpdatePage.this, UploadStudents.class);
+            startActivity(intent);
         });
 
 

@@ -48,6 +48,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="Delete Student" />
+        <Button
+            android:id="@+id/uploadStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Upload Students" />
 
 
 

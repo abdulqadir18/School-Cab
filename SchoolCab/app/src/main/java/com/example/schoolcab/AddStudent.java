@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,6 +34,7 @@ public class AddStudent extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        String ID = mAuth.getCurrentUser().getUid().toString();
 
 
         Button registerButton = findViewById(R.id.registerButton);
@@ -85,6 +87,7 @@ public class AddStudent extends AppCompatActivity {
             student.setAge(age);
             student.setWeight(weight);
             student.setEmail(email);
+            student.setSchoolId(ID);
 
 
 //            Creating a authenication user in firebase
@@ -97,6 +100,12 @@ public class AddStudent extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String userId = user.getUid();
 
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName("student")
+                                        .build();
+
+                                user.updateProfile(profileUpdates);
+
                                 // Save additional user information to Firestore
                                 DocumentReference userRef = db.collection("students").document(userId);
 
@@ -108,6 +117,7 @@ public class AddStudent extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
                                                     // User information saved to Firestore successfully
                                             Toast.makeText(AddStudent.this, "Student registered successfully!", Toast.LENGTH_SHORT).show();
+                                            mAuth.signOut();
                                                 } else {
                                                     // Handle Firestore document creation failure
                                                     Toast.makeText(AddStudent.this, "Error saving user data to Firestore.", Toast.LENGTH_SHORT).show();

@@ -11,35 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#635C5C"
-        android:text="Student DashBoard "
+        android:text="Old Notifications"
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="20dp"
         android:layout_marginBottom="10dp"
 
         />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"/>
 
 
 
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Login" />
 
-        <Button
-            android:id="@+id/viewNotifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Notifications" />
+
+
 
 
     </LinearLayout>

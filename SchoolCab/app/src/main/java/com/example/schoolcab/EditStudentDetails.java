@@ -33,8 +33,6 @@ public class EditStudentDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_student_details);
         db = FirebaseFirestore.getInstance();
-
-
 //
         Log.d("helle" , "WE ARE HERE ");
 //        Log.e(TAG, "Example Item: " + getIntent());

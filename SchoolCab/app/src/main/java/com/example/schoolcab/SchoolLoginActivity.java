@@ -2,7 +2,9 @@ package com.example.schoolcab;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -28,6 +31,16 @@ import java.util.Map;
 
 public class SchoolLoginActivity extends AppCompatActivity {
 
+
+    public static final String SHARED_PREFS = "shared_prefs";
+
+    // key for storing email.
+    public static final String sId = "sId";
+
+    // key for storing password.
+
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
@@ -38,6 +51,10 @@ public class SchoolLoginActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        // getting the data which is stored in shared preferences.
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
 
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v -> {
@@ -58,7 +75,28 @@ public class SchoolLoginActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                Intent intent = new Intent(SchoolLoginActivity.this, SchoolDashboardActivity.class);
+
+                                if(!user.getDisplayName().equals("school") )
+                                {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    Toast.makeText(SchoolLoginActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                    mAuth.signOut();
+                                    return ;
+                                }
+
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                                // below two lines will put values for
+                                // email and password in shared preferences.
+                                editor.putString(sId, user.getUid());
+
+                                // to save our data with key and value.
+                                editor.apply();
+
+
+                                    Intent intent = new Intent(SchoolLoginActivity.this, SchoolDashboardActivity.class);
                                 startActivity(intent);
 
 
