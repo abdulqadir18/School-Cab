@@ -33,8 +33,6 @@
             android:id="@+id/timeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Timestamp"
-            android:textSize="12sp"
-            android:textColor="#888888"/>
+            />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

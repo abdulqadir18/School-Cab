@@ -50,6 +50,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
     implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
     implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
 
 
 //    implementation 'org.apache.poi:poi:5.0.0'
