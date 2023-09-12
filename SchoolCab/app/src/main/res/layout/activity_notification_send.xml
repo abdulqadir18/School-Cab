@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:ems="10"
-            android:hint="Email/ID"
+            android:hint="Title"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Message"
             android:inputType="text" />
 
 

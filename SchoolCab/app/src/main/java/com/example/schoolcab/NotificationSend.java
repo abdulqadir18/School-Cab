@@ -103,6 +103,7 @@ public class NotificationSend extends AppCompatActivity {
 //            json.put("to", "ciGACugXQ_SaXeaxveZmGw:APA91bE8P2FptQ31J3NchtSYxZwWEEjikWu7CA5mCNp6rGDllHJg4KlDBwjhYccIqGNU9uNh2PzirhkuKJCySo7ppZfSfbflt7kxnkl2MH7-0-mfqQ9X5UuVFoupg4zgtaEXp8L0QHLL");
             notifcationBody.put("title", title);
             notifcationBody.put("body", message);
+            notifcationBody.put("click_action", "ViewPreviousNotifications");
 
             json.put("to", TOPIC);
             json.put("notification", notifcationBody);

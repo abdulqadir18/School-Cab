@@ -27,18 +27,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private final String ADMIN_CHANNEL_ID ="admin_channel";
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        final Intent intent = new Intent(this, MainActivity.class);
-        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        int notificationID = new Random().nextInt(3000);
+        public void onMessageReceived(RemoteMessage remoteMessage) {
+            final Intent intent = new Intent(this, ViewPreviousNotifications.class);
+            NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            int notificationID = new Random().nextInt(3000);
 
-      /*
-        Apps targeting SDK 26 or above (Android O) must implement notification channels and add its notifications
-        to at least one of them. Therefore, confirm if version is Oreo or higher, then setup notification channel
-      */
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            setupChannels(notificationManager);
-        }
+          /*
+            Apps targeting SDK 26 or above (Android O) must implement notification channels and add its notifications
+            to at least one of them. Therefore, confirm if version is Oreo or higher, then setup notification channel
+          */
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                setupChannels(notificationManager);
+            }
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this , 0, intent,

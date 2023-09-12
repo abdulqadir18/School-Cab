@@ -35,6 +35,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -120,14 +121,9 @@ public void postExecute(Task<QuerySnapshot> x ){
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
-
-
-
-
+    Collections.reverse(NotificationsList);
     NotificationAdapter courseAdapter = new NotificationAdapter( this , NotificationsList);
 
     // below line is for setting a layout manager for our recycler view.
