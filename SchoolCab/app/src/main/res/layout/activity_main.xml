@@ -30,4 +30,18 @@
         android:id="@+id/studentButton"
         android:layout_marginTop="16dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bus"
+        android:id="@+id/busButton"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/temp"
+        android:id="@+id/tempButton"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>
