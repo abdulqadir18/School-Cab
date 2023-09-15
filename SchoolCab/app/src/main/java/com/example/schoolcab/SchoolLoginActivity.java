@@ -96,7 +96,7 @@ public class SchoolLoginActivity extends AppCompatActivity {
                                 editor.apply();
 
 
-                                    Intent intent = new Intent(SchoolLoginActivity.this, SchoolDashboardActivity.class);
+                                Intent intent = new Intent(SchoolLoginActivity.this, SchoolDashboardActivity.class);
                                 startActivity(intent);
 
 

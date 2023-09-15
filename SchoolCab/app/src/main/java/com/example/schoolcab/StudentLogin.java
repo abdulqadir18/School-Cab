@@ -141,6 +141,9 @@ public class StudentLogin extends AppCompatActivity {
                                         }
                                         String token = task.getResult();
 
+                                        Intent intent = new Intent(StudentLogin.this, StudentDashBoard.class);
+                                        intent.putExtra("schoolID" , schoolID[0]);
+                                        startActivity(intent);
 
                                         String topic = schoolID[0];
 
@@ -160,9 +163,7 @@ public class StudentLogin extends AppCompatActivity {
                                     }
                                 });
 
-                                                Intent intent = new Intent(StudentLogin.this, StudentDashBoard.class);
-                                                intent.putExtra("schoolID" , schoolID[0]);
-                                                startActivity(intent);
+
 
 
                                             } else {

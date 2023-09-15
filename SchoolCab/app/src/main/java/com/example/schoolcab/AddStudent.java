@@ -90,7 +90,7 @@ public class AddStudent extends AppCompatActivity {
             student.setSchoolId(ID);
 
 
-//            Creating a authenication user in firebase
+//            Ccreating a authenication user in firebase
             mAuth.createUserWithEmailAndPassword(email, "1234567890")
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override

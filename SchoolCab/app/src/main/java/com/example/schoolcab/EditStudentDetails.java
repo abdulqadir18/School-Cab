@@ -5,7 +5,9 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -28,14 +30,21 @@ import org.json.JSONObject;
 public class EditStudentDetails extends AppCompatActivity {
     private FirebaseFirestore db;
 
+    public static final String SHARED_PREFS = "shared_prefs";
+
+    // key for schoolId
+    public static final String sId = "sId";
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_student_details);
         db = FirebaseFirestore.getInstance();
-//
-        Log.d("helle" , "WE ARE HERE ");
-//        Log.e(TAG, "Example Item: " + getIntent());
+        //        Getting the school id saved in local preferences
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        String schoolID = sharedpreferences.getString("sId", null);
 
         String jsonString = getIntent().getStringExtra("data");
         String id = getIntent().getStringExtra("id");
@@ -60,7 +69,8 @@ public class EditStudentDetails extends AppCompatActivity {
         int age = ((Double) jsonMap.get("age")).intValue();
         int weight = ((Double) jsonMap.get("weight")).intValue();
         int standard = ((Double) jsonMap.get("standard")).intValue();
-        int phoneNo = ((Double) jsonMap.get("phoneNo")).intValue();
+        String phoneNo = (String) jsonMap.get("phoneNo");
+
 
 //        Log.d(TAG , "hello "+age + "   " + weight + " " + phoneNo + " "+ standard);
 
@@ -138,7 +148,8 @@ public class EditStudentDetails extends AppCompatActivity {
             student.setSex(sex1);
             student.setAge(age1);
             student.setWeight(weight1);
-            student.setEmail(email);
+            student.setEmail(email1);
+            student.setSchoolId(schoolID);
 
 
 

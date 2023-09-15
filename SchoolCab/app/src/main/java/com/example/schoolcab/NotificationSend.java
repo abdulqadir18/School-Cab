@@ -63,7 +63,6 @@ public class NotificationSend extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String schoolID = sharedpreferences.getString("sId", null);
 
-        Toast.makeText(NotificationSend.this, "Hello  " + schoolID, Toast.LENGTH_LONG).show();
 
         edtTitle = findViewById(R.id.edtTitle);
         edtMessage = findViewById(R.id.edtDescription);

@@ -11,14 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#635C5C"
-        android:text="Notification Sending "
+        android:text="Bus Operator DashBoard "
         android:textColor="@color/black"
         android:gravity="center"
         android:textSize="20dp"
         android:layout_marginBottom="10dp"
 
         />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,31 +25,35 @@
         android:orientation="vertical">
 
 
-        <EditText
-            android:id="@+id/edtTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:ems="10"
-            android:hint="Title"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/edtDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:ems="10"
-            android:hint="Message"
-            android:inputType="text" />
 
 
         <Button
-            android:id="@+id/edtSend"
+            android:id="@+id/logout_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="Send" />
+            android:text="Logout" />
+
+        <Button
+            android:id="@+id/busTracking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Bus Tracking" />
+
+        <Button
+            android:id="@+id/attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Attendance" />
+
+        <Button
+            android:id="@+id/notification1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Notification" />
 
 
     </LinearLayout>

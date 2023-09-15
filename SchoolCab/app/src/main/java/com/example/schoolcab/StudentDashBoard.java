@@ -49,6 +49,7 @@ public class StudentDashBoard extends AppCompatActivity {
 
         Button logoutButton = findViewById(R.id.logout_button);
         Button viewNotifications = findViewById(R.id.viewNotifications);
+        Button trackBus = findViewById(R.id.busTrackingStudent);
 
 
         logoutButton.setOnClickListener(v -> {
@@ -73,6 +74,11 @@ public class StudentDashBoard extends AppCompatActivity {
             Intent intent = new Intent(StudentDashBoard.this, ViewPreviousNotifications.class);
             startActivity(intent);
         });
+
+        trackBus.setOnClickListener(v -> {
+            Toast.makeText(StudentDashBoard.this, "This Functionality is not yet Implemented", Toast.LENGTH_LONG).show();
+        });
+
     }
 
 

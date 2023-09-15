@@ -27,12 +27,14 @@ public class StudentAddUpdatePage extends AppCompatActivity {
 
         updateStudent.setOnClickListener(v -> {
             Intent intent = new Intent(StudentAddUpdatePage.this, SearchStudent.class);
+            intent.putExtra("activity" , "update Student");
             startActivity(intent);
         });
 
         deleteStudent.setOnClickListener(v -> {
-            Toast.makeText(StudentAddUpdatePage.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
-
+            Intent intent = new Intent(StudentAddUpdatePage.this, SearchStudent.class);
+            intent.putExtra("activity" , "delete Student");
+            startActivity(intent);
         });
 
 

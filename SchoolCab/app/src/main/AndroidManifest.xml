@@ -5,13 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
-         />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"
-        />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,9 +18,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolCab"
-        tools:targetApi="31"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup"
         tools:targetApi="31">
+        <activity
+            android:name=".AttendanceAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BusDashboard"
+            android:exported="false" />
         <activity
             android:name=".ViewPreviousNotifications"
             android:exported="false" />

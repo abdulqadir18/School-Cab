@@ -70,7 +70,7 @@ public class NewStudent {
     }
     // Getter and setter for Email
     public String getEmail() {
-        return address;
+        return email;
     }
 
     public void setEmail(String email) {
