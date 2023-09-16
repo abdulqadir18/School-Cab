@@ -1,5 +1,6 @@
 package com.example.schoolcab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,6 +47,7 @@ public class SchoolRegistrationActivity extends AppCompatActivity {
             EditText passwordEditText = findViewById(R.id.school_password);
             EditText confirmPasswordEditText = findViewById(R.id.confirm_password);
             EditText schoolEmail = findViewById(R.id.school_email);
+            EditText contactNo = findViewById(R.id.contactNo);
 
             String name = nameEditText.getText().toString();
             String board = boardEditText.getText().toString();
@@ -53,6 +55,8 @@ public class SchoolRegistrationActivity extends AppCompatActivity {
             String email = schoolEmail.getText().toString();
             String password = passwordEditText.getText().toString();
             String confirmPassword = confirmPasswordEditText.getText().toString();
+            String mobileNo = contactNo.getText().toString();
+
 
             Log.d("SchoolRegistration", "Name: " + name + ", Password: " + password +
                                                 "Board: " + board + "schoolId: " + schoolId + "confirmPassword: " + confirmPassword);
@@ -63,11 +67,12 @@ public class SchoolRegistrationActivity extends AppCompatActivity {
                 Log.e("Matched Passwords", password);
                 School school = new School();
                 school.setName(name);
-                school.setSchoolId(schoolId);
+                school.setLicenseNo(schoolId);
                 school.setBoard(board);
                 school.setVerifiedStatus(false);
                 school.setPassword(password);
                 school.setEmail(email);
+                school.setMobileNo(mobileNo);
 
 
                 mAuth.createUserWithEmailAndPassword(email, "1234567890")
@@ -97,7 +102,10 @@ public class SchoolRegistrationActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         // school information saved to Firestore successfully
-                                                        Toast.makeText(SchoolRegistrationActivity.this, "Student registered successfully!", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(SchoolRegistrationActivity.this, "School Registered Succesfully \n You will Soon Contacted and Verified by our panel", Toast.LENGTH_LONG).show();
+                                                        Intent intent = new Intent(SchoolRegistrationActivity.this , SchoolLoginActivity.class);
+                                                        startActivity(intent);
+
                                                     } else {
                                                         // Handle Firestore document creation failure
                                                         Toast.makeText(SchoolRegistrationActivity.this, "Error saving user data to Firestore.", Toast.LENGTH_SHORT).show();
@@ -117,6 +125,11 @@ public class SchoolRegistrationActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void onLoginClick(View view){
+        startActivity(new Intent(this,SchoolLoginActivity.class));
+
     }
 }
 

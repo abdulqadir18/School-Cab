@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         schoolButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SchoolNameActivity.class);
+            Intent intent = new Intent(MainActivity.this, SchoolLoginActivity.class);
             startActivity(intent);
         });
 

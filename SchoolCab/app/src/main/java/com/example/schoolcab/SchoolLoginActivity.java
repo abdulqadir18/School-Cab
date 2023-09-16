@@ -55,6 +55,18 @@ public class SchoolLoginActivity extends AppCompatActivity {
         // getting the data which is stored in shared preferences.
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
+        TextView forgotPassword = findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(v -> {
+            Toast.makeText(SchoolLoginActivity.this, "Authentication failed.",
+                    Toast.LENGTH_SHORT).show();
+                });
+
+        TextView register = findViewById(R.id.register);
+        register.setOnClickListener(v -> {
+            Intent intent = new Intent(SchoolLoginActivity.this, SchoolRegistrationActivity.class);
+            startActivity(intent);
+
+        });
 
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v -> {

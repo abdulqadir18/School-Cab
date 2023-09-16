@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,6 +68,12 @@ public class StudentLogin extends AppCompatActivity {
 // getting the data which is stored in shared preferences.
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
+        TextView forgotPassword = findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(v -> {
+            Toast.makeText(StudentLogin.this, "Your PassWord Reset Functionality is not yet Working",
+                    Toast.LENGTH_SHORT).show();
+
+                });
 
         Button login_button = findViewById(R.id.login_button);
         login_button.setOnClickListener(v -> {
