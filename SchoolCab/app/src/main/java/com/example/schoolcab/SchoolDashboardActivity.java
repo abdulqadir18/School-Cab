@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,14 +45,13 @@ public class SchoolDashboardActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-        TextView schoolName = findViewById(R.id.school_name);
 
-        LinearLayout busButton = findViewById(R.id.bus_button);
-        LinearLayout busCoordinatorButton = findViewById(R.id.bus_coordinator_button);
-        LinearLayout studentButton = findViewById(R.id.student_details_button);
-        LinearLayout attendanceButton = findViewById(R.id.attendance_button);
-        LinearLayout logoutButton = findViewById(R.id.logoutButton);
-        LinearLayout sendNotification = findViewById(R.id.sendNotification);
+        RelativeLayout busButton = findViewById(R.id.bus_button);
+        RelativeLayout busCoordinatorButton = findViewById(R.id.bus_coordinator_button);
+        RelativeLayout studentButton = findViewById(R.id.student_details_button);
+        RelativeLayout attendanceButton = findViewById(R.id.attendance_button);
+        RelativeLayout logoutButton = findViewById(R.id.logoutButton);
+        RelativeLayout sendNotification = findViewById(R.id.sendNotification);
 
 
         busButton.setOnClickListener(v -> {

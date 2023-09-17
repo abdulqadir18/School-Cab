@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Button schoolButton = findViewById(R.id.schoolButton);
-        Button studentButton = findViewById(R.id.studentButton);
-        Button busButton = findViewById(R.id.busButton);
-        Button tempButton = findViewById(R.id.tempButton);
+        RelativeLayout schoolButton = findViewById(R.id.schoolButton);
+        RelativeLayout studentButton = findViewById(R.id.studentButton);
+        RelativeLayout busButton = findViewById(R.id.busButton);
+        RelativeLayout tempButton = findViewById(R.id.tempButton);
 
 
         schoolButton.setOnClickListener(v -> {

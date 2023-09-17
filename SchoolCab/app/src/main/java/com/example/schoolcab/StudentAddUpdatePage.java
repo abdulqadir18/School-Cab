@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class StudentAddUpdatePage extends AppCompatActivity {
@@ -15,10 +16,10 @@ public class StudentAddUpdatePage extends AppCompatActivity {
         setContentView(R.layout.activity_student_add_update_page);
 
 
-        Button addStudent = findViewById(R.id.addStudent);
-        Button updateStudent = findViewById(R.id.updateStudent);
-        Button deleteStudent = findViewById(R.id.deleteStudent);
-        Button uploadStudent = findViewById(R.id.uploadStudent);
+        RelativeLayout addStudent = findViewById(R.id.addStudent);
+        RelativeLayout deleteStudent = findViewById(R.id.deleteStudent);
+        RelativeLayout updateStudent = findViewById(R.id.updateStudent);
+        RelativeLayout uploadStudent = findViewById(R.id.uploadStudent);
 
         addStudent.setOnClickListener(v -> {
             Intent intent = new Intent(StudentAddUpdatePage.this, AddStudent.class);
