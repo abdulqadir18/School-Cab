@@ -57,8 +57,8 @@ public class SchoolLoginActivity extends AppCompatActivity {
 
         TextView forgotPassword = findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(v -> {
-            Toast.makeText(SchoolLoginActivity.this, "Authentication failed.",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SchoolLoginActivity.this, ForgotPassword.class);
+            startActivity(intent);
                 });
 
         TextView register = findViewById(R.id.register);
