@@ -25,6 +25,12 @@
         tools:replace="android:allowBackup"
         tools:targetApi="31">
         <activity
+            android:name=".DeleteCoordinator"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateCoordinator"
+            android:exported="false" />
+        <activity
             android:name=".AttendanceAddActivity"
             android:exported="false" />
         <activity
@@ -102,6 +108,12 @@
         <activity
             android:name=".SchoolDashboardActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".CoOrdinatorRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinatorDashboardActivity"
+            android:exported="false" />
         <activity
             android:name=".BusLoginActivity"
             android:screenOrientation="portrait" />

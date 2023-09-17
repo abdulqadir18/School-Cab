@@ -1,5 +1,6 @@
 package com.example.schoolcab;
 
+import android.content.Intent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,9 +60,8 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         });
 
         busCoordinatorButton.setOnClickListener(v -> {
-            Toast.makeText(SchoolDashboardActivity.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
-
-
+            Intent intent = new Intent(SchoolDashboardActivity.this, CoordinatorDashboardActivity.class);
+            startActivity(intent);
         });
 
         studentButton.setOnClickListener(v -> {
