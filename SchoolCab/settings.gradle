@@ -12,9 +12,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
 
-        maven {
-            url "https://repository.aspose.com/repo/"
-        }
+        // add the following
+        maven { url "https://jitpack.io" }
     }
 }
 rootProject.name = "SchoolCab"

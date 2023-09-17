@@ -121,6 +121,10 @@ public class AttendanceAddActivity extends AppCompatActivity {
                 doc.update("attendance", FieldValue.arrayUnion(formattedDate));
 
             }
+            Toast.makeText(AttendanceAddActivity.this, "Attendance Marked Succesfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(AttendanceAddActivity.this, BusDashboard.class);
+            startActivity(intent);
+
 
         });
 
@@ -146,6 +150,3 @@ public class AttendanceAddActivity extends AppCompatActivity {
                 });
     }
 }
-
-
-

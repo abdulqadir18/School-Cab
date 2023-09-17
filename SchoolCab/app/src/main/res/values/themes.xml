@@ -13,13 +13,14 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
-    <style name="Theme.SchoolCab.NoActionBar">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SchoolCab" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+    <style name="Theme.SchoolCab.NoActionBar" >
         <item name="windowActionBar">false</item>
+        <!-- Status bar color. -->
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="Theme.SchoolCab.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.SchoolCab.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

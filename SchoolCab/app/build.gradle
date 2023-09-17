@@ -46,15 +46,9 @@ android {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-messaging:11.4.0'
-    implementation 'com.android.volley:volley:1.0.0'
-    implementation 'com.google.auth:google-auth-library-oauth2-http:1.19.0'
-
-    implementation 'org.apache.poi:poi:3.17'
-    //implementation 'org.apache.poi:poi-ooxml:3.17'
-
-//    implementation (group: 'com.aspose', name: 'aspose-cells', version: '20.6', classifier: 'android.via.java')
-
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //animated button for login
+//    implementation 'br.com.simplepass:loading-button-android:2.2.0'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -64,8 +58,26 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.5.0'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'com.google.firebase:firebase-database:20.2.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+//    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    //OSMDROID
+    implementation "org.osmdroid:osmdroid-android:6.1.10"
+    implementation "org.osmdroid:osmdroid-wms:6.1.10"
+    implementation "org.osmdroid:osmdroid-geopackage:6.1.10"
+    implementation "com.google.android.gms:play-services-location:21.0.0"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
+    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+
+
+//    implementation 'org.apache.poi:poi:5.0.0'
+//    implementation 'org.apache.poi:poi-ooxml:5.0.0'
 
 }
