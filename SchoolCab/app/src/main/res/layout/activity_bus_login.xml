@@ -24,6 +24,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="textPassword"
+
         android:text="12345"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
