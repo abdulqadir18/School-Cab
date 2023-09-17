@@ -73,8 +73,8 @@
         android:layout_height="wrap_content"
         android:text="Logout"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="593dp" />
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="635dp" />
 
     <Button
         android:id="@+id/sendNotification"
@@ -88,32 +88,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/student_details_button"
         app:layout_constraintVertical_bias="0.525" />
-    />
 
-    <Button
-        android:id="@+id/notification_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Notification Related"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_details_button"
-        app:layout_constraintVertical_bias="0.543" />
-
-    <Button
-        android:id="@+id/report_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Report Related"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notification_button"
-        app:layout_constraintVertical_bias="0.543" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
