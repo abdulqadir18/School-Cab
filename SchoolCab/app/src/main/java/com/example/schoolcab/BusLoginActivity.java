@@ -142,7 +142,9 @@ public class BusLoginActivity extends AppCompatActivity {
                                     String schoolId = busData.get("schoolid").toString();
 
                                     // Redirect to BusDashboardActivity with schoolId
+
                                     Intent intent = new Intent(BusLoginActivity.this, BusDashboard.class);
+
                                     intent.putExtra("busid", id);
                                     intent.putExtra("schoolid", schoolId);
                                     startActivity(intent);

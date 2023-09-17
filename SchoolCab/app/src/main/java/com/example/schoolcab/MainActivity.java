@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         Button tempButton = findViewById(R.id.tempButton);
 
 
-
         schoolButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SchoolLoginActivity.class);
             startActivity(intent);
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, BusLoginActivity.class);
             startActivity(intent);
         });
-
 
         tempButton.setOnClickListener(v -> {
             Toast.makeText(MainActivity.this, "Functionality is Not yet Implemented", Toast.LENGTH_LONG).show();

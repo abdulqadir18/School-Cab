@@ -13,6 +13,7 @@
 
     </string-array>
     <string name="title_activity_add_student">AddStudent</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -62,5 +63,11 @@
 <!--    <string name="app_name">ModernLogin</string>-->
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
+
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="bus">Bus</string>
+    <string name="temp">Temp</string>
 
 </resources>
