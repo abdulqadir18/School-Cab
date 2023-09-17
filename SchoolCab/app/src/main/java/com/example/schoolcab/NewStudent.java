@@ -4,7 +4,7 @@ public class NewStudent {
     private String name;
     private String rollNo;
     private String guardian;
-    private int phoneNo;
+    private String phoneNo;
     private String address;
     private String defaultAddress;
     private int standard;
@@ -14,6 +14,7 @@ public class NewStudent {
     private int age;
     private int weight;
 
+    private String schoolId;
     public NewStudent() {
         // Default constructor required for Firestore
     }
@@ -25,7 +26,13 @@ public class NewStudent {
         this.name = name;
     }
 
+    public String getSchoolId() {
+        return schoolId;
+    }
 
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
+    }
     // Getter and setter for rollNo
     public String getRollNo() {
         return rollNo;
@@ -45,11 +52,11 @@ public class NewStudent {
     }
 
     // Getter and setter for phoneNo
-    public int getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 
@@ -63,7 +70,7 @@ public class NewStudent {
     }
     // Getter and setter for Email
     public String getEmail() {
-        return address;
+        return email;
     }
 
     public void setEmail(String email) {
