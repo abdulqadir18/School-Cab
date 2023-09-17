@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,6 +21,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchoolCab"
+
+        tools:replace="android:allowBackup"
         tools:targetApi="31">
         <activity
             android:name=".DeleteCoordinator"
@@ -17,6 +30,58 @@
         <activity
             android:name=".UpdateCoordinator"
             android:exported="false" />
+        <activity
+            android:name=".AttendanceAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BusDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".ViewPreviousNotifications"
+            android:exported="false" />
+        <activity
+            android:name=".NotificationSend"
+            android:exported="false" />
+
+        <service
+            android:name=".MyFirebaseInstanceIDService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".UploadStudents"
+            android:exported="false" />
+        <activity
+            android:name=".StudentDashBoard"
+            android:exported="false" />
+        <activity
+            android:name=".StudentLogin"
+            android:exported="false" />
+        <activity
+            android:name=".StudentAddUpdatePage"
+            android:exported="false" />
+        <activity
+            android:name=".EditStudentDetails"
+            android:exported="false" />
+        <activity
+            android:name=".SearchStudent"
+            android:exported="false" />
+        <activity
+            android:name=".AddStudent"
+            android:exported="false" />
+
         <activity
             android:name=".SchoolLoginActivity"
             android:exported="false"
@@ -32,10 +97,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StudentRegistrationActivity"
+            android:name=".SchoolNameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SchoolNameActivity"
+            android:name=".ReportActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SchoolRegistrationActivity"
@@ -49,6 +114,15 @@
         <activity
             android:name=".CoordinatorDashboardActivity"
             android:exported="false" />
+        <activity
+            android:name=".BusLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BusDashboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GpsTempActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
