@@ -30,4 +30,10 @@
         android:id="@+id/studentButton"
         android:layout_marginTop="16dp"/>
 
+    <Button
+        android:id="@+id/coordinator"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Coordinator" />
+
 </LinearLayout>

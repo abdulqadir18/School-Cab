@@ -1,5 +1,6 @@
 package com.example.schoolcab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,7 +26,8 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         });
 
         busCoordinatorButton.setOnClickListener(v -> {
-
+            Intent intent = new Intent(SchoolDashboardActivity.this, CoordinatorDashboardActivity.class);
+            startActivity(intent);
         });
 
         studentButton.setOnClickListener(v -> {

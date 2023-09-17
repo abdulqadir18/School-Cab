@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button schoolButton = findViewById(R.id.schoolButton);
         Button studentButton = findViewById(R.id.studentButton);
+        Button coordinatorButton = findViewById(R.id.coordinator);
 
         schoolButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SchoolNameActivity.class);
@@ -23,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         studentButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, StudentRegistrationActivity.class);
+            startActivity(intent);
+        });
+
+        coordinatorButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SchoolNameActivity.class);// yeh complete krna h
             startActivity(intent);
         });
     }

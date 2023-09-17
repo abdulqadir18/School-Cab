@@ -12,6 +12,12 @@
         android:theme="@style/Theme.SchoolCab"
         tools:targetApi="31">
         <activity
+            android:name=".DeleteCoordinator"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateCoordinator"
+            android:exported="false" />
+        <activity
             android:name=".SchoolLoginActivity"
             android:exported="false"
             android:label="@string/title_activity_school_login"
@@ -37,6 +43,12 @@
         <activity
             android:name=".SchoolDashboardActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".CoOrdinatorRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinatorDashboardActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
