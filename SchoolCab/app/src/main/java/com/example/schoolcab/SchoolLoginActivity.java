@@ -5,10 +5,8 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Map;
 
@@ -58,6 +56,21 @@ public class SchoolLoginActivity extends AppCompatActivity {
                                     Map<String,Object> m = document.getData();
                                     intent.putExtra("schoolName", m.get("name").toString());
                                 }
+
+                                // Subscribe to topic
+                                FirebaseMessaging.getInstance().subscribeToTopic("school_"+id)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                String msg = "Subscribed to school_"+id;
+                                                if (!task.isSuccessful()) {
+                                                    msg = "Subscribe failed";
+                                                }
+                                                Log.d(TAG, msg);
+                                                Toast.makeText(SchoolLoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
 
                                 startActivity(intent);
                             } else {
