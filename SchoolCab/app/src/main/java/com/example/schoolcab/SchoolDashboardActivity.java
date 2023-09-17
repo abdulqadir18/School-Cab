@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,8 +74,10 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         });
 
        attendanceButton.setOnClickListener(v -> {
-           Toast.makeText(SchoolDashboardActivity.this, "This Functionality is not yet been Added please wait for updated version", Toast.LENGTH_LONG).show();
-
+           Log.d("School Dashboard", "Call Report Activity");
+//           Toast.makeText(SchoolDashboardActivity.this, "Attendance Report Clicked", Toast.LENGTH_LONG).show();
+           Intent intent = new Intent(SchoolDashboardActivity.this, ReportActivity.class);
+           startActivity(intent);
         });
 
         logoutButton.setOnClickListener(v -> {
@@ -92,6 +95,7 @@ public class SchoolDashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(SchoolDashboardActivity.this, NotificationSend.class);
             startActivity(intent);
         });
+
     }
 }
 
