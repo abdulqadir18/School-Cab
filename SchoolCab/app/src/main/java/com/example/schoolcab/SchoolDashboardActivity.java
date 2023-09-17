@@ -1,5 +1,6 @@
 package com.example.schoolcab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         Button busCoordinatorButton = findViewById(R.id.bus_coordinator_button);
         Button studentButton = findViewById(R.id.student_details_button);
         Button attendanceButton = findViewById(R.id.attendance_button);
+        Button notificationButton = findViewById(R.id.notification_button);
+        Button reportButton = findViewById(R.id.report_button);
         busButton.setOnClickListener(v -> {
 
         });
@@ -33,8 +36,20 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         });
 
        attendanceButton.setOnClickListener(v -> {
-
+           Intent intent = new Intent(SchoolDashboardActivity.this, AttendanceAddActivity.class);
+           startActivity(intent);
         });
+
+        notificationButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SchoolDashboardActivity.this, NotificationSendActivity.class);
+            startActivity(intent);
+        });
+
+        reportButton.setOnClickListener(v-> {
+            Intent intent = new Intent(SchoolDashboardActivity.this, ReportActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
 
