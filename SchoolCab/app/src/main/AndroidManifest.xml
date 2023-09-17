@@ -123,6 +123,12 @@
         <activity
             android:name=".GpsTempActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".CoordinatorLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CoordinatorDashboard"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
