@@ -3,7 +3,11 @@ package com.example.schoolcab;
 import static android.app.PendingIntent.getActivity;
 import static android.content.ContentValues.TAG;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +44,8 @@ import java.util.Map;
 public class AttendanceAddActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
+
+    SharedPreferences sharedPreferences;
     private List<Map<String,String>> studentData = new ArrayList<>();
     private List<String> studentNames = new ArrayList<>();
 
@@ -52,12 +58,14 @@ public class AttendanceAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_add);
 
-
-        String id = "YCsEefFBNjhJuNO4FQMkKo51QR13";
+        sharedPreferences=getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+        String school=sharedPreferences.getString("sId",NULL);
+        String busId = sharedPreferences.getString("busId",NULL);
         db = FirebaseFirestore.getInstance();
 
         db.collection("students")
-                .whereEqualTo("schoolId", id)
+                .whereEqualTo("schoolId", school)
+                .whereEqualTo("busId",busId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

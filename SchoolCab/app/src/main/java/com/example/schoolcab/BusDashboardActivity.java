@@ -679,7 +679,7 @@ public class BusDashboardActivity extends AppCompatActivity {
 
     private void fetchBusLocation() {
         db.collection("bus")
-                .whereEqualTo("busid", targetBusId)
+                .whereEqualTo("busId", targetBusId)
                 .addSnapshotListener((snapshot, error) -> {
                     if (error != null) {
                         // Handle database errors.
@@ -762,7 +762,7 @@ public class BusDashboardActivity extends AppCompatActivity {
         // Query for the document with the matching busid
         Log.d("Update Location", "Yes");
         db.collection("bus")
-                .whereEqualTo("busid", targetBusId)
+                .whereEqualTo("busId", targetBusId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
