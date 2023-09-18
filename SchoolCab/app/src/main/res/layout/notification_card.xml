@@ -1,38 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:minHeight="120dp"
+    app:cardElevation="10dp"
+    app:cardBackgroundColor="@color/colorAccent"
+    app:cardCornerRadius="16dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+         >
+
+
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Title"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="25sp"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/messageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message"/>
-
-        <TextView
-            android:id="@+id/timeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:paddingRight="10dp"
+            android:text="App Developer  hjsdghj hgdsjhghjsadgf iugdsfaygfyujgj hgdgfjag hdsajh jhdsfjh hsafhgdg hhjad hgjsa hgdfasgjadj"
+            android:textColor="@color/lavender"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            >
+
+
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="App Developer"
+                android:textColor="@color/black"
+                android:layout_marginRight="7dp"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                />
+
+
+
+        </LinearLayout>
+
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>

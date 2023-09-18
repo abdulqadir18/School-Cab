@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import jxl.Cell;
@@ -49,7 +50,7 @@ public class UploadStudents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_students);
 
-        Button chooseFileButton = findViewById(R.id.uploadButton);
+        RelativeLayout chooseFileButton = findViewById(R.id.uploadButton);
 
         // Initialize the ActivityResultLauncher
         filePickerLauncher = registerForActivityResult(

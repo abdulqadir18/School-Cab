@@ -70,8 +70,8 @@ public class StudentLogin extends AppCompatActivity {
 
         TextView forgotPassword = findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(v -> {
-            Toast.makeText(StudentLogin.this, "Your PassWord Reset Functionality is not yet Working",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(StudentLogin.this, ForgotPassword.class);
+            startActivity(intent);
 
                 });
 

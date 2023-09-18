@@ -1,53 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical"
-
-    >
-
-    <TextView
+    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#635C5C"
-        android:text="Student DashBoard "
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:layout_marginBottom="10dp"
-
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-
-
-        <Button
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/constraintLayout"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:id="@+id/amazonName"
+            android:text="Dashboard"
+            android:textSize="35sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/amazonImage"/>
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Logout" />
+            android:id="@+id/amazonDesc"
+            android:text="Parents"
+            android:textSize="35sp"
+            android:layout_marginStart="18dp"
+            android:textColor="@color/lavender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amazonName"
+            app:layout_constraintEnd_toStartOf="@+id/amazonImage"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:id="@+id/amazonImage"
+            android:src="@drawable/parents"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/amazonName"/>
 
-        <Button
-            android:id="@+id/viewNotifications"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Notifications" />
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amazonImage">
 
-        <Button
-            android:id="@+id/busTrackingStudent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Track Bus" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clothingCard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
 
-    </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/busTrackingStudent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-</LinearLayout>
+                    <TextView
+                        android:id="@+id/clothingName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/clothingImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Bus Tracking"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/clothingImage"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/bus" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:id="@+id/viewNotifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/elecName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/elecImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Notifications"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/elecImage"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/notification" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:id="@+id/row2"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row1">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:id="@+id/logout_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/homeName"
+                        android:text="Logout"
+                        android:textSize="20sp"
+                        android:textColor="@color/lavender"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/homeImage"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/homeImage"
+                        android:src="@drawable/logout"
+                        android:layout_marginTop="15dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

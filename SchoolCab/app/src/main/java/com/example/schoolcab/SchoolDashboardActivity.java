@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
 
 public class SchoolDashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -43,15 +47,13 @@ public class SchoolDashboardActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-        TextView schoolName = findViewById(R.id.school_name);
-        schoolName.setText(getIntent().getStringExtra("schoolName"));
 
-        Button busButton = findViewById(R.id.bus_button);
-        Button busCoordinatorButton = findViewById(R.id.bus_coordinator_button);
-        Button studentButton = findViewById(R.id.student_details_button);
-        Button attendanceButton = findViewById(R.id.attendance_button);
-        Button logoutButton = findViewById(R.id.logoutButton);
-        Button sendNotification = findViewById(R.id.sendNotification);
+        RelativeLayout busButton = findViewById(R.id.bus_button);
+        RelativeLayout busCoordinatorButton = findViewById(R.id.bus_coordinator_button);
+        RelativeLayout studentButton = findViewById(R.id.student_details_button);
+        RelativeLayout attendanceButton = findViewById(R.id.attendance_button);
+        RelativeLayout logoutButton = findViewById(R.id.logoutButton);
+        RelativeLayout sendNotification = findViewById(R.id.sendNotification);
 
 
         busButton.setOnClickListener(v -> {

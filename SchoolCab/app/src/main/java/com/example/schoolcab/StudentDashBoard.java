@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,9 +48,9 @@ public class StudentDashBoard extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String schoolID = sharedpreferences.getString("sId", null);
 
-        Button logoutButton = findViewById(R.id.logout_button);
-        Button viewNotifications = findViewById(R.id.viewNotifications);
-        Button trackBus = findViewById(R.id.busTrackingStudent);
+        RelativeLayout logoutButton = findViewById(R.id.logout_button);
+        RelativeLayout viewNotifications = findViewById(R.id.viewNotifications);
+        RelativeLayout trackBus = findViewById(R.id.busTrackingStudent);
 
 
         logoutButton.setOnClickListener(v -> {

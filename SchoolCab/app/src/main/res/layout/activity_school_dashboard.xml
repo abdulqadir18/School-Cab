@@ -1,93 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/school_name"
-        android:layout_width="345dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="84dp"
-        android:text="Default Name"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bus_button"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Bus/Tracking Related"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207" />
+        android:id="@+id/constraintLayout"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:id="@+id/amazonName"
+            android:text="Dashboard"
+            android:textSize="35sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/amazonImage"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/amazonDesc"
+            android:text="School "
+            android:textSize="35sp"
+            android:layout_marginStart="18dp"
+            android:textColor="@color/lavender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amazonName"
+            app:layout_constraintEnd_toStartOf="@+id/amazonImage"/>
 
-    <Button
-        android:id="@+id/bus_coordinator_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Bus Coordinator Related"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bus_button"
-        app:layout_constraintVertical_bias="0.127" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:id="@+id/amazonImage"
+            android:src="@drawable/school"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/amazonName"/>
 
-    <Button
-        android:id="@+id/student_details_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Student Related"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bus_coordinator_button"
-        app:layout_constraintVertical_bias="0.154" />
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amazonImage">
 
-    <Button
-        android:id="@+id/attendance_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Attendance Related"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_details_button"
-        app:layout_constraintVertical_bias="0.205" />
-
-
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="635dp" />
-
-    <Button
-        android:id="@+id/sendNotification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="4dp"
-        android:text="Notification"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_details_button"
-        app:layout_constraintVertical_bias="0.525" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clothingCard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <RelativeLayout
+                    android:id="@+id/bus_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/clothingName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/clothingImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Bus/Tracking"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/clothingImage"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/bus" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:id="@+id/bus_coordinator_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/elecName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/elecImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Bus Coordinator"
+                        android:textColor="@color/lavender"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/elecImage"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/bus_coordinator" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:id="@+id/row2"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row1">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:id="@+id/student_details_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/homeName"
+                        android:text="Manage Students"
+                        android:textSize="20sp"
+                        android:textColor="@color/lavender"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/homeImage"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/homeImage"
+                        android:src="@drawable/student_svgrepo_com"
+                        android:layout_marginTop="15dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:id="@+id/attendance_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/beautyName"
+                        android:text="Attendance"
+                        android:textSize="20sp"
+                        android:textColor="@color/lavender"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/beautyImage"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/beautyImage"
+                        android:src="@drawable/attendance"
+                        android:layout_marginTop="15dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:id="@+id/row3"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row2">
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:id="@+id/sendNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pharmName"
+                        android:text="Notification"
+                        android:textSize="20sp"
+                        android:textColor="@color/lavender"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/pharmImage"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/pharmImage"
+                        android:src="@drawable/notification"
+                        android:layout_marginTop="15dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:id="@+id/logoutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/grocName"
+                        android:text="Logout"
+                        android:textSize="20sp"
+                        android:textColor="@color/lavender"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/grocImage"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/grocImage"
+                        android:src="@drawable/logout"
+                        android:layout_marginTop="15dp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
