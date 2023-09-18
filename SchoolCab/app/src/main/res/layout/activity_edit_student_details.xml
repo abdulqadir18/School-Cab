@@ -1,375 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical"
-    >
+    android:background="@color/register_bk_color"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:layout_gravity="center">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#635C5C"
-        android:text="Edit Student"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="40dp"
-        android:layout_marginBottom="10dp"
-
-        />
-    <!--   Name  -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="Name    : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtName"
-            android:layout_width="wrap_content"
-            android:text="samoil"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="15"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:inputType="text"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="30dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/heading"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    style="@style/viewParent.headerText.NoMode"
+                    android:textColor="@color/whiteTextColor"
+                    android:text="Update Details \n         page 1"/>
 
-            />
-    </LinearLayout>
-    <!--    Roll No : -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="Roll No    : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
+                <ImageView
 
-        <TextView
-            android:id="@+id/edtRollNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="text"
-
-            />
-    </LinearLayout>
-
-    <!--    Parent / Guardian Name -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Guardian  : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtGuardian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="text"
-
-            />
-    </LinearLayout>
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/update"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
 
 
-    <!--    Phone No. -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Contact No     : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/whiteTextColor"
+                app:cardCornerRadius="10dp">
 
-        <EditText
-            android:id="@+id/edtPhoneNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="phone"
+                <LinearLayout
+                    android:id="@+id/container1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
-            />
-    </LinearLayout>
+                    <TextView
+                        android:layout_height="30dp"
+                        android:textAlignment="center"
+                        style="@style/modifiedEditText"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textSize="20dp"
+                        android:hint="Enrollment No."/>
 
-    <!--    Email -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="Email     : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
+                        <TextView
+                            android:layout_height="30dp"
+                            android:textAlignment="center"
+                            android:id="@+id/edtenroll"
+                            style="@style/modifiedEditText"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:textSize="20dp"
+                            android:hint="enrollmentNo."/>
 
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="textEmailAddress"
+                    <TextView
+                        android:layout_height="30dp"
+                        android:textAlignment="center"
+                        style="@style/modifiedEditText"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textSize="20dp"
+                        android:hint="email"/>
 
-            />
-    </LinearLayout>
+                        <TextView
+                            android:layout_height="30dp"
+                            android:textAlignment="center"
+                            android:id="@+id/edtEmail"
+                            style="@style/modifiedEditText"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:textSize="20dp"
+                            android:text="samoil@gmail.com"
+                            android:hint="email"/>
 
-    <!--    Default Address-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Address     : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputName"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtName"
+                            style="@style/modifiedEditText"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:hint="Name"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edtAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="textPostalAddress"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputSchoolBoard"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtGuardian"
+                            style="@style/modifiedEditText"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:hint="Parent / Guardian Name"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            />
-    </LinearLayout>
-
-    <!--    Class  Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="Class    : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtClass"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="number"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="section    : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtSection"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            />
-    </LinearLayout>
-
-    <!--    Age And Sex and weight-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Age   : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtAge"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="number"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="Weight (kg)  : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtWeight"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="number"
-            />
-    </LinearLayout>
-
-    <!--    Default Pickup Location  -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="Default pickPoint   : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
-
-        <EditText
-            android:id="@+id/edtDefaultAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="textPostalAddress"
-            />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputMobile"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtPhoneNo"
+                            style="@style/modifiedEditText"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:hint="Contact No."/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-    </LinearLayout>
 
-    <!--    Sex-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="sex   : "
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_margin="10dp"
-            android:textAlignment="center"
-            />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputAddress"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtAddress"
+                            style="@style/modifiedEditText"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:hint="Permanent Address"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputTempAddress"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtDefaultAddress"
+                            style="@style/modifiedEditText"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:hint="Current Address"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/nextButton"
+                        style="@style/loginButton"
+                        android:text="next"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+
+                        />
 
 
-        <EditText
-            android:id="@+id/edtSex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="15"
-            android:gravity="center"
-            android:inputType="text"
-            />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        >
-        <Button
-            android:id="@+id/registerButton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Update"
-            android:background="#635C5C"
-            android:textSize="20dp"
-            android:backgroundTint="#635C5C"
-            />
+                </LinearLayout>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/container2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:layout_height="30dp"
+                        style="@style/modifiedEditText"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:textSize="15dp"
+                        android:hint="Enrollment No."/>
+                    <TextView
+                        android:id="@+id/edtRollNo"
+                        android:textAlignment="center"
+                        android:layout_height="30dp"
+                        style="@style/modifiedEditText"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:textSize="20dp"
+                        android:hint="Roll No."/>
+
+                    <TextView
+                        android:textAlignment="center"
+                        android:layout_height="30dp"
+                        style="@style/modifiedEditText"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:textSize="15dp"
+                        android:hint="Email"/>
+                    <TextView
+                        android:id="@+id/edtEmaila"
+                        android:textAlignment="center"
+                        android:layout_height="30dp"
+                        style="@style/modifiedEditText"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:textSize="20dp"
+                        android:hint="Roll No."/>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtClass"
+                            style="@style/modifiedEditText"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:hint="Class / Standard"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtSection"
+                            style="@style/modifiedEditText"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:hint="Section"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
 
 
 
-</LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtAge"
+                            style="@style/modifiedEditText"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:hint="Age"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtWeight"
+                            style="@style/modifiedEditText"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:hint="weight (in KG)"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/edtSex"
+                            style="@style/modifiedEditText"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:hint="Sex (M/F/Trans)"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/register_button"
+                        style="@style/loginButton"
+                        android:text="Update Student"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+
+                        />
+
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

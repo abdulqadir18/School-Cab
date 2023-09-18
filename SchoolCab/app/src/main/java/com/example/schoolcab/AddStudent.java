@@ -3,10 +3,14 @@ package com.example.schoolcab;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,17 +23,50 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 
 public class AddStudent extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
+    private int page =1 ;
+    String name ;
+    String guardian  ;
+    String email  ;
+    String phoneNo ;
+    String address  ;
+    String  defaultAddress;
+
+    @Override
+    public void onBackPressed() {
+
+       if(page== 2)
+       {
+           LinearLayout container1 = findViewById(R.id.container1);
+           LinearLayout container2 = findViewById(R.id.container2);
+           TextView heading = findViewById(R.id.heading);
+
+
+           container1.setVisibility(View.VISIBLE);
+           container2.setVisibility(View.INVISIBLE);
+           page =1;
+           heading.setText("Student Details \n         page 1");
+
+       }
+else{
+
+      finish();
+       }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
+        page =1;
 
 
         db = FirebaseFirestore.getInstance();
@@ -37,17 +74,51 @@ public class AddStudent extends AppCompatActivity {
         String ID = mAuth.getCurrentUser().getUid().toString();
 
 
-        Button registerButton = findViewById(R.id.registerButton);
-        registerButton.setOnClickListener(v -> {
-            // Collect student details from EditText fields
+        Button nextButton = findViewById(R.id.nextButton);
+        Button registerButton = findViewById(R.id.register_button);
+        TextView heading = findViewById(R.id.heading);
+
+        nextButton.setOnClickListener(v -> {
+            LinearLayout container1 = findViewById(R.id.container1);
+            LinearLayout container2 = findViewById(R.id.container2);
 
             EditText edtName = findViewById(R.id.edtName);
-            EditText edtRollNo = findViewById(R.id.edtRollNo);
             EditText edtGuardian = findViewById(R.id.edtGuardian);
             EditText edtEmail = findViewById(R.id.edtEmail);
             EditText edtPhoneNo = findViewById(R.id.edtPhoneNo);
             EditText edtAddress = findViewById(R.id.edtAddress);
             EditText edtDefaultAddress = findViewById(R.id.edtDefaultAddress);
+
+            name = edtName.getText().toString();
+             guardian = edtGuardian.getText().toString();
+             email = edtEmail.getText().toString();
+             phoneNo = edtPhoneNo.getText().toString();
+             address = edtAddress.getText().toString();
+             defaultAddress = edtDefaultAddress.getText().toString();
+
+if(name.isEmpty()|| guardian.isEmpty() || email.isEmpty() || phoneNo.isEmpty() || address.isEmpty() || defaultAddress.isEmpty())
+{
+    Toast.makeText(AddStudent.this, "Some Field Missing . Please Check", Toast.LENGTH_SHORT).show();
+
+    return;
+}
+
+            container1.setVisibility(View.INVISIBLE);
+            container2.setVisibility(View.VISIBLE);
+            heading.setText("Student Details \n         page 2");
+            page =2;
+
+
+                });
+
+
+
+
+
+        registerButton.setOnClickListener(v -> {
+            // Collect student details from EditText fields
+
+            EditText edtRollNo = findViewById(R.id.edtRollNo);
             EditText edtClass = findViewById(R.id.edtClass);
             EditText edtSection = findViewById(R.id.edtSection);
             EditText edtSex = findViewById(R.id.edtSex);
@@ -56,18 +127,26 @@ public class AddStudent extends AppCompatActivity {
 
 
 
-            String name = edtName.getText().toString();
+
             String rollNo = edtRollNo.getText().toString();
-            String guardian = edtGuardian.getText().toString();
-            String email = edtEmail.getText().toString();
-            String phoneNo = edtPhoneNo.getText().toString();
-            String address = edtAddress.getText().toString();
-            String  defaultAddress = edtDefaultAddress.getText().toString();
-            int standard = Integer.parseInt(edtClass.getText().toString());
             String section  = edtSection.getText().toString();
             String sex = edtSex.getText().toString();
+            String Age = edtAge.getText().toString();
+            String Weight  = edtWeight.getText().toString();
+            String Standard = edtClass.getText().toString();
+
+            if(rollNo.isEmpty() || section.isEmpty() || Age.isEmpty() || sex.isEmpty() || Weight.isEmpty() || Standard.isEmpty())
+            {
+                Toast.makeText(AddStudent.this, "Some Field Missing . Please Check", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+
+
+
             int age = Integer.parseInt(edtAge.getText().toString());
             int weight = Integer.parseInt(edtWeight.getText().toString());
+            int standard = Integer.parseInt(edtClass.getText().toString());
+
 
 
 
@@ -135,7 +214,6 @@ public class AddStudent extends AppCompatActivity {
 
 
         });
-
 
 
 
