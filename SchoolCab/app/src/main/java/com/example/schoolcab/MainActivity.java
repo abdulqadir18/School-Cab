@@ -73,10 +73,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         tempButton.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "Functionality is Not yet Implemented", Toast.LENGTH_LONG).show();
-
-//            Intent intent = new Intent(MainActivity.this, GpsTempActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, CoordinatorLoginActivity.class);
+            startActivity(intent);
         });
 
     }
