@@ -66,11 +66,11 @@
                 app:cardCornerRadius="20dp"
                 app:cardElevation="20dp">
 
+
                 <RelativeLayout
                     android:id="@+id/bus_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                     <TextView
                         android:id="@+id/clothingName"
                         android:layout_width="wrap_content"
@@ -91,6 +91,7 @@
                         android:src="@drawable/bus" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -251,7 +252,6 @@
                 app:cardCornerRadius="20dp">
                 <RelativeLayout
                     android:id="@+id/logoutButton"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView

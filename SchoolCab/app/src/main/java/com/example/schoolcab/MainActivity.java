@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         RelativeLayout schoolButton = findViewById(R.id.schoolButton);
         RelativeLayout studentButton = findViewById(R.id.studentButton);
         RelativeLayout busButton = findViewById(R.id.busButton);
         RelativeLayout tempButton = findViewById(R.id.tempButton);
-
+      
 
         schoolButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SchoolLoginActivity.class);
@@ -66,18 +67,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
         busButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, BusLoginActivity.class);
             startActivity(intent);
         });
 
         tempButton.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "Functionality is Not yet Implemented", Toast.LENGTH_LONG).show();
-
-//            Intent intent = new Intent(MainActivity.this, GpsTempActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, CoordinatorLoginActivity.class);
+            startActivity(intent);
         });
-
 
     }
 }
