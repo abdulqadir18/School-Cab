@@ -10,6 +10,11 @@ public class CoOrdinator {
 
     private String phoneNo;
 
+    private String password;
+
+    private String coordinatorId;
+
+
     public CoOrdinator() {
         // Default constructor required for Firestore
     }
@@ -49,5 +54,21 @@ public class CoOrdinator {
 
     public void setphoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCoordinatorId() {
+        return coordinatorId;
+    }
+
+    public void setCoordinatorId(String coordinatorId) {
+        this.coordinatorId = coordinatorId;
     }
 }

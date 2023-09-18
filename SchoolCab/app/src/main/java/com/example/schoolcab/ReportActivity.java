@@ -68,6 +68,7 @@ public class ReportActivity extends AppCompatActivity {
                     // same time, respect the user's decision. Don't link to system
                     // settings in an effort to convince the user to change their
                     // decision.
+                    Log.d(TAG, "Permission Not Granted: ");
                 }
             });
 
