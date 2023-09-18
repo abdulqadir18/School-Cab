@@ -15,10 +15,10 @@
         android:text="Phone No."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextName"
-        app:layout_constraintVertical_bias="0.554" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <EditText
         android:id="@+id/EditTextSchoolId"
@@ -26,13 +26,13 @@
         android:layout_height="49dp"
         android:ems="10"
         android:inputType="text"
-        android:text="School_Id"
+        android:text="Coordinator_Id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextName"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintVertical_bias="0.276" />
 
     <EditText
         android:id="@+id/EditTextLastName"
@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextName"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintVertical_bias="0.088" />
 
     <TextView
         android:id="@+id/textView"
@@ -75,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <Button
         android:id="@+id/co_register"
@@ -84,8 +84,22 @@
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EditTextSchoolId"
-        app:layout_constraintVertical_bias="0.647" />
+        app:layout_constraintVertical_bias="0.826" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="383dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Password"
+        app:layout_constraintBottom_toTopOf="@+id/co_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNo"
+        app:layout_constraintVertical_bias="0.33" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
