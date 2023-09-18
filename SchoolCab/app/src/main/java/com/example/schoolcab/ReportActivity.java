@@ -1,12 +1,18 @@
 package com.example.schoolcab;
 
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +24,8 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -49,13 +57,11 @@ public class ReportActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String TAG = "Report Activity";
     int rowNum=1;
-
-    File path = Environment.getExternalStoragePublicDirectory(
-    Environment.DIRECTORY_DOWNLOADS);
-    File file = new File(path, "AttendanceReport.xls");
+    String busId = "";
 
     Workbook wb = new HSSFWorkbook();
     Sheet sheet = wb.createSheet("sheet1");
+
 
     private ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -79,7 +85,7 @@ public class ReportActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_attendance_report);
 
-        Button btn = findViewById(R.id.generate);
+        Button btn = findViewById(R.id.edtGenerate);
         btn.setOnClickListener(v ->{
             if(ContextCompat.checkSelfPermission(getApplicationContext(),"android.permission.WRITE_EXTERNAL_STORAGE")== PackageManager.PERMISSION_DENIED){
                 Log.d("Report Activity", "Permission Denied");
@@ -125,8 +131,10 @@ public class ReportActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     private void fetchStudentData(){
         Row headerRow = sheet.createRow(0);
+
         List<Date> dates = getDates("01-09-2023", "30-09-2023");
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 //        Cell tempcell = headerRow.createCell(0);
@@ -137,10 +145,12 @@ public class ReportActivity extends AppCompatActivity {
             cell.setCellValue(df.format(dates.get(i)));
         }
 
-        db = FirebaseFirestore.getInstance();
+        EditText bus_no = findViewById(R.id.edtBusNo);
+        Integer busNo = Integer.parseInt(bus_no.getText().toString());
 
-        db.collection("students")
-                .whereEqualTo("email", "charvi@gmail.com")
+        db = FirebaseFirestore.getInstance();
+        db.collection("bus")
+                .whereEqualTo("busNo",busNo)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -150,46 +160,74 @@ public class ReportActivity extends AppCompatActivity {
                             Log.d(TAG, String.valueOf(task.getResult().size()));
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 //Log.d("Doc", String.valueOf(document));
-                                Row row = sheet.createRow(rowNum);
-                                Cell namecell = row.createCell(0);
-                                namecell.setCellValue((String) document.getData().get("name"));
-                                for(int i=0; i<dates.size();i++)
-                                {
-                                    Cell cell = row.createCell(i+1);
-                                    List<String> atten = (List<String>) document.getData().get("attendance");
-                                    if(atten.contains(df.format(dates.get(i)))){
-                                        cell.setCellValue(1);
-                                    }
-                                    else{
-                                        cell.setCellValue(0);
-                                    }
+                                busId=document.getId();
+                            }
 
-                                }
-                                //Log.d(TAG, document.getId() + " => " + document.getData());
-                                rowNum++;
-                            }
-                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                                try {
-                                    boolean result = Files.deleteIfExists(file.toPath());
-                                    Log.d(TAG, String.valueOf(result));
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            }
-                            try (OutputStream fileOut = new FileOutputStream(file)) {
-                                wb.write(fileOut);
-                                Toast.makeText(ReportActivity.this, "Attendance Report Generated Succesfully", Toast.LENGTH_LONG).show();
-                            } catch (FileNotFoundException e) {
-                                throw new RuntimeException(e);
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+                            db.collection("students")
+                                    .whereEqualTo("busid", busId)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "Task Successful");
+                                                Log.d(TAG, String.valueOf(task.getResult().size()));
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    //Log.d("Doc", String.valueOf(document));
+                                                    Row row = sheet.createRow(rowNum);
+                                                    Cell namecell = row.createCell(0);
+                                                    namecell.setCellValue((String) document.getData().get("name"));
+                                                    for(int i=0; i<dates.size();i++)
+                                                    {
+                                                        Cell cell = row.createCell(i+1);
+                                                        List<String> atten = (List<String>) document.getData().get("attendance");
+                                                        if(atten.contains(df.format(dates.get(i)))){
+                                                            cell.setCellValue(1);
+                                                        }
+                                                        else{
+                                                            cell.setCellValue(0);
+                                                        }
+
+                                                    }
+                                                    //Log.d(TAG, document.getId() + " => " + document.getData());
+                                                    rowNum++;
+                                                }
+
+                                                File path = Environment.getExternalStoragePublicDirectory(
+                                                        Environment.DIRECTORY_DOWNLOADS);
+                                                File file = new File(path, "AttendanceReport"+busNo.toString()+".xls");
+
+                                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                                    try {
+                                                        boolean result = Files.deleteIfExists(file.toPath());
+                                                        Log.d(TAG, String.valueOf(result));
+                                                    } catch (IOException e) {
+                                                        throw new RuntimeException(e);
+                                                    }
+                                                }
+                                                try (OutputStream fileOut = new FileOutputStream(file)) {
+                                                    wb.write(fileOut);
+                                                    Toast.makeText(ReportActivity.this, "Attendance Report Generated Succesfully", Toast.LENGTH_LONG).show();
+                                                } catch (FileNotFoundException e) {
+                                                    throw new RuntimeException(e);
+                                                } catch (IOException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            } else {
+                                                Log.d(TAG, "Error while fetching student data: ", task.getException());
+                                            }
+                                        }
+                                    });
+
+
+
                         } else {
-                            Log.d(TAG, "Error while fetching student data: ", task.getException());
+                            Log.d(TAG, "Error while fetching bus data: ", task.getException());
                         }
                     }
                 });
     }
+
 }
 
 
