@@ -1,8 +1,12 @@
 package com.example.schoolcab;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -31,6 +35,10 @@ public class CoOrdinatorRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_co_ordinator_registration);
 
         db = FirebaseFirestore.getInstance();
+
+        SharedPreferences sharedpreferences=getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+        String school_id=sharedpreferences.getString("sId",NULL);
+
         mAuth = FirebaseAuth.getInstance();
         String ID = mAuth.getCurrentUser().getUid().toString();
 
@@ -39,19 +47,25 @@ public class CoOrdinatorRegistration extends AppCompatActivity {
             // Collect coordinator details from EditText fields
             EditText nameEditText = findViewById(R.id.EditTextName);
             EditText lastNameEditText = findViewById(R.id.EditTextLastName);
-            EditText ageEditText=findViewById(R.id.EditTextSchoolId);
+            EditText coordinator=findViewById(R.id.EditTextSchoolId);
             EditText phoneNoEditText=findViewById(R.id.editTextPhoneNo);
+            EditText passwordEditText=findViewById(R.id.password);
 
             String name = nameEditText.getText().toString();
             String lastName = lastNameEditText.getText().toString();
-            String schoolId= ageEditText.getText().toString();
             String phoneNo=phoneNoEditText.getText().toString();
+            String coordinator_id=coordinator.getText().toString();
+            String password=passwordEditText.getText().toString();
+
 
             CoOrdinator c = new CoOrdinator();
             c.setName(name);
             c.setLastName(lastName);
-            c.setSchoolId(schoolId);
+            c.setSchoolId(school_id);
             c.setphoneNo(phoneNo);
+            c.setCoordinatorId(coordinator_id);
+            c.setPassword(password);
+
 
 
 
