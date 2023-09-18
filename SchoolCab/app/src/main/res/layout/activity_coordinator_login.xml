@@ -28,12 +28,14 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     style="@style/viewParent.headerText.NoMode"
-                    android:text="Welcome Back \n  Coordinator !"/>
+                    android:textColor="@color/lavender"
+                    android:text="Welcome Back \n Coordinators !"/>
+
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_register_hero"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:src="@drawable/bus_coordinator"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
@@ -62,16 +64,17 @@
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <TextView
                 android:id="@+id/forgotPassword"
                 style="@style/viewParent"
                 android:text="Forgot Password?"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/lavender"
                 android:textSize="@dimen/newsMoreTextSize"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login_button"
                 style="@style/loginButton"
 
