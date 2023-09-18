@@ -129,6 +129,9 @@
         <activity
             android:name=".CoordinatorDashboard"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddBusActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

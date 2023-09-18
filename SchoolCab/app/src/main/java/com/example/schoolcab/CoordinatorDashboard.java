@@ -71,10 +71,10 @@ public class CoordinatorDashboard extends AppCompatActivity {
 
         addBus.setOnClickListener(v -> {
 
-            Toast.makeText(CoordinatorDashboard.this, "This Functionality is not yet Implemented", Toast.LENGTH_LONG).show();
+//            Toast.makeText(CoordinatorDashboard.this, "This Functionality is not yet Implemented", Toast.LENGTH_LONG).show();
 
-//            Intent intent = new Intent(CoordinatorDashboard.this, ViewPreviousNotifications.class);
-//            startActivity(intent);
+            Intent intent = new Intent(CoordinatorDashboard.this, AddBusActivity.class);
+            startActivity(intent);
         });
 
         allotBus.setOnClickListener(v -> {
