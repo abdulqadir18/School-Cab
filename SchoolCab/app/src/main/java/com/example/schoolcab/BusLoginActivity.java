@@ -194,10 +194,10 @@ public class BusLoginActivity extends AppCompatActivity {
                                                 Type type = new TypeToken<Map<String, Object>>() {}.getType();
                                                 Map<String, Object> jsonMap = gson.fromJson(jsonString, type);
 
-                                                schoolID[0] = jsonMap.get("schoolid").toString();
-                                                busId = jsonMap.get("busid").toString();
-                                                Log.d(TAG, "DocumentSnapshot data: Schoolid " + schoolID[0]);
-                                                Log.d(TAG, "DocumentSnapshot data: busid " + busId);
+                                                schoolID[0] = jsonMap.get("schoolId").toString();
+                                                busId = jsonMap.get("busId").toString();
+                                                Log.d(TAG, "DocumentSnapshot data: SchoolId " + schoolID[0]);
+                                                Log.d(TAG, "DocumentSnapshot data: busId " + busId);
 
                                                 SharedPreferences.Editor editor = sharedpreferences.edit();
                                                 editor.putString(sId, schoolID[0]);

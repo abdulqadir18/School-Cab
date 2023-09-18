@@ -1,8 +1,12 @@
 package com.example.schoolcab;
 
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
@@ -55,6 +59,7 @@ import java.util.Map;
 
 public class ReportActivity extends AppCompatActivity {
     private FirebaseFirestore db;
+    SharedPreferences sharedpreferences;
     private String TAG = "Report Activity";
     int rowNum=1;
     String busId = "";
@@ -84,6 +89,8 @@ public class ReportActivity extends AppCompatActivity {
         Log.d("Report Activity", "Started");
 
         setContentView(R.layout.activity_attendance_report);
+
+        sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
 
         Button btn = findViewById(R.id.edtGenerate);
         btn.setOnClickListener(v ->{
@@ -148,9 +155,12 @@ public class ReportActivity extends AppCompatActivity {
         EditText bus_no = findViewById(R.id.edtBusNo);
         Integer busNo = Integer.parseInt(bus_no.getText().toString());
 
+        String school = sharedpreferences.getString("sId",NULL);
+
         db = FirebaseFirestore.getInstance();
         db.collection("bus")
                 .whereEqualTo("busNo",busNo)
+                .whereEqualTo("schoolId",school)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -164,7 +174,8 @@ public class ReportActivity extends AppCompatActivity {
                             }
 
                             db.collection("students")
-                                    .whereEqualTo("busid", busId)
+                                    .whereEqualTo("busId", busId)
+                                    .whereEqualTo("schoolId",school)
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                         @Override
