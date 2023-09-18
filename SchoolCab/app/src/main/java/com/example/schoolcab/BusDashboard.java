@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,7 +22,6 @@ public class BusDashboard extends AppCompatActivity {
 
         attendance.setOnClickListener(v -> {
             Intent intent = new Intent(BusDashboard.this, AttendanceAddActivity.class);
-
             startActivity(intent);
 
         });
@@ -32,10 +32,14 @@ public class BusDashboard extends AppCompatActivity {
         });
 
         busTracking.setOnClickListener(v -> {
+            String busId = getIntent().getStringExtra("busid");
+            String schoolId = getIntent().getStringExtra("schoolid");
 
             Intent intent = new Intent(BusDashboard.this, BusDashboardActivity.class);
-            intent.putExtra("busid", getIntent().getStringExtra("busid"));
-            intent.putExtra("schoolid", getIntent().getStringExtra("schoolid"));
+            Log.d("Bus Dashboard","Bus ID"+ busId);
+            Log.d("Bus Dashboard","School ID"+ schoolId);
+            intent.putExtra("busid", busId);
+            intent.putExtra("schoolid", schoolId);
             startActivity(intent);
         });
         notification.setOnClickListener(v -> {

@@ -36,10 +36,8 @@ public class CoordinatorLoginActivity extends AppCompatActivity {
 
     public static final String SHARED_PREFS = "shared_prefs";
 
-    // key for storing email.
     public static final String sId = "sId";
 
-    // key for storing password.
 
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
