@@ -63,8 +63,8 @@ public class CoordinatorLoginActivity extends AppCompatActivity {
 
         TextView forgotPassword = findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(v -> {
-            Toast.makeText(CoordinatorLoginActivity.this, "Your PassWord Reset Functionality is not yet Working",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(CoordinatorLoginActivity.this, ForgotPassword.class);
+            startActivity(intent);
 
         });
 

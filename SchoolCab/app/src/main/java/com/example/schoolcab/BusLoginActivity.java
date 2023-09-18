@@ -101,6 +101,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -138,10 +139,17 @@ public class BusLoginActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
 
+        TextView forgotPassword = findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(BusLoginActivity.this, ForgotPassword.class);
+            startActivity(intent);
+
+        });
+
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(v -> {
-            EditText idEditText = findViewById(R.id.bus_id);
-            EditText passwordEditText = findViewById(R.id.bus_password);
+            EditText idEditText = findViewById(R.id.edtEmail);
+            EditText passwordEditText = findViewById(R.id.edtPassWord);
 
             String id = idEditText.getText().toString();
             String password = passwordEditText.getText().toString();

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,14 +48,12 @@ public class CoordinatorDashboard extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String schoolID = sharedpreferences.getString("sId", null);
 
-        Button logoutButton = findViewById(R.id.logout_button);
-        Button addBus = findViewById(R.id.addBus);
-        Button allotBus = findViewById(R.id.allotBus);
+        RelativeLayout logoutButton = findViewById(R.id.logout_button);
+        RelativeLayout addBus = findViewById(R.id.addBus);
+        RelativeLayout allotBus = findViewById(R.id.allotBus);
 
 
         logoutButton.setOnClickListener(v -> {
-
-
             mAuth.signOut();
 
             FirebaseMessaging.getInstance().unsubscribeFromTopic(schoolID);
