@@ -84,6 +84,8 @@ public class SchoolDashboardActivity extends AppCompatActivity {
             //            removing the schooldid from shared preferences on logout
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.remove(sId);
+            editor.remove("email");
+            editor.remove("password");
             editor.apply();
 
             Intent intent = new Intent(SchoolDashboardActivity.this, MainActivity.class);

@@ -3,7 +3,9 @@ package com.example.schoolcab;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,10 @@ public class AddStudent extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
+    public static final String SHARED_PREFS = "shared_prefs";
+
+    // variable for shared preferences.
+    SharedPreferences sharedpreferences;
     private int page =1 ;
     String name ;
     String guardian  ;
@@ -66,7 +72,14 @@ else{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
+
+        //        Getting the school id saved in local preferences
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        String id = sharedpreferences.getString("email", null);
+        String password = sharedpreferences.getString("password", null);
+
         page =1;
+
 
 
         db = FirebaseFirestore.getInstance();
@@ -197,6 +210,12 @@ if(name.isEmpty()|| guardian.isEmpty() || email.isEmpty() || phoneNo.isEmpty() |
                                                     // User information saved to Firestore successfully
                                             Toast.makeText(AddStudent.this, "Student registered successfully!", Toast.LENGTH_SHORT).show();
                                             mAuth.signOut();
+
+                                            mAuth.signInWithEmailAndPassword(id, password);
+                                                    Intent intent = new Intent(AddStudent.this, StudentAddUpdatePage.class);
+                                                    startActivity(intent);
+                                                    finish();
+
                                                 } else {
                                                     // Handle Firestore document creation failure
                                                     Toast.makeText(AddStudent.this, "Error saving user data to Firestore.", Toast.LENGTH_SHORT).show();

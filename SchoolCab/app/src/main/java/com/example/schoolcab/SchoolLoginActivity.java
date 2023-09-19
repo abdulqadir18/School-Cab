@@ -105,11 +105,14 @@ public class SchoolLoginActivity extends AppCompatActivity {
                                 editor.putString(sId, user.getUid());
 
                                 // to save our data with key and value.
+                                editor.putString("email" , id);
+                                editor.putString("password" ,password);
                                 editor.apply();
 
 
                                 Intent intent = new Intent(SchoolLoginActivity.this, SchoolDashboardActivity.class);
                                 startActivity(intent);
+
 
 
                             } else {
