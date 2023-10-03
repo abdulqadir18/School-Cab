@@ -136,6 +136,12 @@
         <activity
             android:name=".AddBusActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".AttendanceTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AttendanceAddDepartureActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

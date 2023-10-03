@@ -33,12 +33,21 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
 
             String id = currentUser.getUid();
+
             if(currentUser.getDisplayName().equals("school") ) {
                 Intent intent = new Intent(MainActivity.this, SchoolDashboardActivity.class);
                 startActivity(intent);
             }
-            else{
+            else if(currentUser.getDisplayName().equals("student") ) {
                 Intent intent = new Intent(MainActivity.this, StudentDashBoard.class);
+                startActivity(intent);
+            }
+            else if(currentUser.getDisplayName().equals("coordinator") ) {
+                Intent intent = new Intent(MainActivity.this, CoordinatorDashboard.class);
+                startActivity(intent);
+            }
+            else if(currentUser.getDisplayName().equals("bus") ) {
+                Intent intent = new Intent(MainActivity.this, BusDashboard.class);
                 startActivity(intent);
             }
         }

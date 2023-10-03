@@ -52,6 +52,48 @@
                     android:hint="Bus Number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <RadioGroup
+                android:layout_marginTop="20dp"
+                android:id="@+id/groupradio"
+                android:layout_marginLeft="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/arrival"
+                    android:text="Arrival Attendance"
+                    android:textSize="15sp"/>
+
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/departure"
+                    android:text="Departure Attendance"
+                    android:textSize="15sp"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/idBtnPickStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:text="Pick Begin Date"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/colorAccent"/>
+
+            <Button
+                android:id="@+id/idBtnPickEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:text="Pick End Date"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/colorAccent"/>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/edtGenerate"

@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class AttendanceAddActivity extends AppCompatActivity {
+public class AttendanceAddDepartureActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
 
@@ -93,7 +93,7 @@ public class AttendanceAddActivity extends AppCompatActivity {
                             ArrayAdapter<String> arr;
                             arr
                                     = new ArrayAdapter<String>(
-                                    AttendanceAddActivity.this,
+                                    AttendanceAddDepartureActivity.this,
                                     android.R.layout.simple_list_item_1,
                                     studentNames);
                             l.setAdapter(arr);
@@ -126,11 +126,11 @@ public class AttendanceAddActivity extends AppCompatActivity {
 //                        });
 
                 DocumentReference doc = db.collection("students").document(stud);
-                doc.update("arrivalAttendance", FieldValue.arrayUnion(formattedDate));
+                doc.update("departureAttendance", FieldValue.arrayUnion(formattedDate));
 
             }
-            Toast.makeText(AttendanceAddActivity.this, "Attendance Marked Succesfully", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(AttendanceAddActivity.this, BusDashboard.class);
+            Toast.makeText(AttendanceAddDepartureActivity.this, "Attendance Marked Succesfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(AttendanceAddDepartureActivity.this, BusDashboard.class);
             startActivity(intent);
 
 

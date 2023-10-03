@@ -55,7 +55,7 @@ public class BusDashboard extends AppCompatActivity {
         RelativeLayout notification = findViewById(R.id.notification_button);
 
         attendance.setOnClickListener(v -> {
-            Intent intent = new Intent(BusDashboard.this, AttendanceAddActivity.class);
+            Intent intent = new Intent(BusDashboard.this, AttendanceTypeActivity.class);
             startActivity(intent);
 
         });
