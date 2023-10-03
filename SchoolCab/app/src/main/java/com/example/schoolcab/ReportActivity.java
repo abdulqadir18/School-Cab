@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -49,6 +51,7 @@ import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,6 +69,10 @@ public class ReportActivity extends AppCompatActivity {
 
     Workbook wb = new HSSFWorkbook();
     Sheet sheet = wb.createSheet("sheet1");
+
+    String startDat="",endDat="",attendanceType;
+
+    RadioGroup radioGroup;
 
 
     private ActivityResultLauncher<String> requestPermissionLauncher =
@@ -91,6 +98,97 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance_report);
 
         sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+
+        Button startDate = findViewById(R.id.idBtnPickStartDate);
+        Button endDate = findViewById(R.id.idBtnPickEndDate);
+
+
+        startDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // on below line we are getting
+                // the instance of our calendar.
+                final Calendar c = Calendar.getInstance();
+
+                // on below line we are getting
+                // our day, month and year.
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                // on below line we are creating a variable for date picker dialog.
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        // on below line we are passing context.
+                        ReportActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // on below line we are setting date to our text view.
+                                startDat = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                                try {
+                                    Date parsedDate = df.parse(startDat);
+                                    startDat = df.format(parsedDate);
+                                } catch (ParseException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                                startDate.setText(startDat);
+                            }
+                        },
+                        // on below line we are passing year,
+                        // month and day for selected date in our date picker.
+                        year, month, day);
+                // at last we are calling show to
+                // display our date picker dialog.
+                datePickerDialog.show();
+            }
+        });
+
+        endDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // on below line we are getting
+                // the instance of our calendar.
+                final Calendar c = Calendar.getInstance();
+
+                // on below line we are getting
+                // our day, month and year.
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+
+                // on below line we are creating a variable for date picker dialog.
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        // on below line we are passing context.
+                        ReportActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // on below line we are setting date to our text view.
+                                endDat = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                                try {
+                                    Date parsedDate = df.parse(endDat);
+                                    endDat = df.format(parsedDate);
+                                } catch (ParseException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                                endDate.setText(endDat);
+                            }
+                        },
+                        // on below line we are passing year,
+                        // month and day for selected date in our date picker.
+                        year, month, day);
+                // at last we are calling show to
+                // display our date picker dialog.
+                datePickerDialog.show();
+            }
+        });
+
 
         Button btn = findViewById(R.id.edtGenerate);
         btn.setOnClickListener(v ->{
@@ -142,7 +240,7 @@ public class ReportActivity extends AppCompatActivity {
     private void fetchStudentData(){
         Row headerRow = sheet.createRow(0);
 
-        List<Date> dates = getDates("01-09-2023", "30-09-2023");
+        List<Date> dates = getDates(startDat, endDat);
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 //        Cell tempcell = headerRow.createCell(0);
 //        tempcell.setCellValue(11);
@@ -154,6 +252,7 @@ public class ReportActivity extends AppCompatActivity {
 
         EditText bus_no = findViewById(R.id.edtBusNo);
         Integer busNo = Integer.parseInt(bus_no.getText().toString());
+
 
         String school = sharedpreferences.getString("sId",NULL);
 
@@ -173,6 +272,34 @@ public class ReportActivity extends AppCompatActivity {
                                 busId=document.getId();
                             }
 
+                            RadioGroup radioGroup = (RadioGroup)findViewById(R.id.groupradio);
+                            radioGroup.setOnCheckedChangeListener(
+                                    new RadioGroup
+                                            .OnCheckedChangeListener() {
+                                        @Override
+                                        public void onCheckedChanged(RadioGroup group, int checkedId) {
+                                            RadioButton
+                                                    radioButton
+                                                    = (RadioButton)group
+                                                    .findViewById(checkedId);
+                                        }
+                                    });
+
+                            int selectedId = radioGroup.getCheckedRadioButtonId();
+                            if (selectedId == -1) {
+                                Toast.makeText(ReportActivity.this, "Please select attendance type", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                               if(selectedId==R.id.arrival){
+                                   attendanceType="arrival";
+                               }
+                               else {
+                                   attendanceType="departure";
+                               }
+                            }
+
+                            Log.d("ReportActivity", attendanceType);
+
                             db.collection("students")
                                     .whereEqualTo("busId", busId)
                                     .whereEqualTo("schoolId",school)
@@ -191,7 +318,7 @@ public class ReportActivity extends AppCompatActivity {
                                                     for(int i=0; i<dates.size();i++)
                                                     {
                                                         Cell cell = row.createCell(i+1);
-                                                        List<String> atten = (List<String>) document.getData().get("attendance");
+                                                        List<String> atten = (List<String>) document.getData().get(attendanceType+"Attendance");
                                                         if(atten.contains(df.format(dates.get(i)))){
                                                             cell.setCellValue(1);
                                                         }
@@ -206,7 +333,7 @@ public class ReportActivity extends AppCompatActivity {
 
                                                 File path = Environment.getExternalStoragePublicDirectory(
                                                         Environment.DIRECTORY_DOWNLOADS);
-                                                File file = new File(path, "AttendanceReport"+busNo.toString()+".xls");
+                                                File file = new File(path, attendanceType+"AttendanceReport"+busNo.toString()+".xls");
 
                                                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                                                     try {
