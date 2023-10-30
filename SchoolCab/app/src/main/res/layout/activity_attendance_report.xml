@@ -29,60 +29,81 @@
                     android:layout_alignParentLeft="true"
                     style="@style/viewParent.headerText.NoMode"
                     android:textColor="@color/lavender"
-                    android:text="      Notification"/>
+                    android:text="  Attendance Report"/>
 
 
                 <ImageView
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:src="@drawable/notification"
+                    android:src="@drawable/parents"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputEmail"
+                android:id="@+id/textInput1"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
-                    android:id="@+id/edtTitle"
+                    android:id="@+id/edtBusNo"
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="Title"/>
+                    android:hint="Bus Number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputPassword"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
-                <EditText
-                    android:id="@+id/edtDescription"
-                    style="@style/modifiedEditText"
-                    android:hint="Description"
-                    android:maxLines="1"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+            <RadioGroup
+                android:layout_marginTop="20dp"
+                android:id="@+id/groupradio"
+                android:layout_marginLeft="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/arrival"
+                    android:text="Arrival Attendance"
+                    android:textSize="15sp"/>
 
+                <RadioButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/departure"
+                    android:text="Departure Attendance"
+                    android:textSize="15sp"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/idBtnPickStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:text="Pick Begin Date"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/colorAccent"/>
+
+            <Button
+                android:id="@+id/idBtnPickEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:text="Pick End Date"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/colorAccent"/>
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/edtSend"
+                android:id="@+id/edtGenerate"
                 style="@style/loginButton"
 
-                android:text="Send"
+                android:text="Generate"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
 
                 tools:ignore="MissingClass" />
-
-
-
-
-
-
-
 
         </LinearLayout>
     </ScrollView>

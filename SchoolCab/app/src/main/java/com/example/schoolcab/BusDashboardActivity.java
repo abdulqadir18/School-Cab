@@ -345,11 +345,14 @@
 
 package com.example.schoolcab;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -380,6 +383,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationToken;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.api.LogDescriptor;
 import com.google.firebase.firestore.DocumentReference;
@@ -393,6 +397,8 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.Manifest;
 
@@ -402,6 +408,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -434,9 +441,9 @@ public class BusDashboardActivity extends AppCompatActivity {
         // Get the busid from the Intent
         Intent intent = getIntent();
         targetBusId = intent.getStringExtra("busid");
-        Log.d("Bus ID", targetBusId);
+        Log.d("Bus Tracking","Bus ID"+ targetBusId);
         targetSchoolId = intent.getStringExtra("schoolid");
-        Log.d("School ID", targetSchoolId);
+        Log.d("Bus Tracking","School ID"+ targetSchoolId);
 
         final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
 
@@ -672,7 +679,7 @@ public class BusDashboardActivity extends AppCompatActivity {
 
     private void fetchBusLocation() {
         db.collection("bus")
-                .whereEqualTo("busid", targetBusId)
+                .whereEqualTo("busId", targetBusId)
                 .addSnapshotListener((snapshot, error) -> {
                     if (error != null) {
                         // Handle database errors.
@@ -713,41 +720,49 @@ public class BusDashboardActivity extends AppCompatActivity {
     }
 
     private void fetchSchoolLocation() {
-        db.collection("schools")
-                .whereEqualTo("schoolId", targetSchoolId)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Map<String, Object> schoolData = document.getData();
-                            // Assuming you have a GeoPoint from Firestore
-                            GeoPoint firebaseGeoPointSchool = document.getGeoPoint("location");
-                            Log.d("School Location", String.valueOf(firebaseGeoPointSchool));
 
-                            if (firebaseGeoPointSchool != null) {
-                                // Convert Firebase GeoPoint to osmdroid GeoPoint
-                                org.osmdroid.util.GeoPoint osmGeoPointSchool = new org.osmdroid.util.GeoPoint(firebaseGeoPointSchool.getLatitude(), firebaseGeoPointSchool.getLongitude());
+        DocumentReference userRef = db.collection("schools").document(targetSchoolId);
 
-                                // Add a marker for the school
-                                Marker schoolMarker = new Marker(mapView);
-                                schoolMarker.setPosition(osmGeoPointSchool);
-                                schoolMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                                mapView.getOverlays().add(schoolMarker);
+        userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    Log.d("Documnet Snapshot: ", String.valueOf(document));
+                    if (document.exists()) {
 
-                                mapView.invalidate(); // Refresh the map
-                            }
+                        GeoPoint firebaseGeoPointSchool = document.getGeoPoint("location");
+                        Log.d("School Location", String.valueOf(firebaseGeoPointSchool));
+
+                        if (firebaseGeoPointSchool != null) {
+                            // Convert Firebase GeoPoint to osmdroid GeoPoint
+                            org.osmdroid.util.GeoPoint osmGeoPointSchool = new org.osmdroid.util.GeoPoint(firebaseGeoPointSchool.getLatitude(), firebaseGeoPointSchool.getLongitude());
+
+                            // Add a marker for the school
+                            Marker schoolMarker = new Marker(mapView);
+                            schoolMarker.setPosition(osmGeoPointSchool);
+                            schoolMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                            mapView.getOverlays().add(schoolMarker);
+
+                            mapView.invalidate(); // Refresh the map
                         }
+
                     } else {
-                        // Handle the error
+                        Log.d(TAG, "No such document");
                     }
-                });
+
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     private void updateLocationInFirebase(Location location) {
         // Query for the document with the matching busid
         Log.d("Update Location", "Yes");
         db.collection("bus")
-                .whereEqualTo("busid", targetBusId)
+                .whereEqualTo("busId", targetBusId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {

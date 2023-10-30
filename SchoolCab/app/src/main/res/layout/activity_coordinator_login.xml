@@ -29,13 +29,13 @@
                     android:layout_alignParentLeft="true"
                     style="@style/viewParent.headerText.NoMode"
                     android:textColor="@color/lavender"
-                    android:text="      Notification"/>
+                    android:text="Welcome Back \n Coordinators !"/>
 
 
                 <ImageView
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:src="@drawable/notification"
+                    android:src="@drawable/bus_coordinator"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
@@ -45,11 +45,11 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
-                    android:id="@+id/edtTitle"
+                    android:id="@+id/edtEmail"
                     style="@style/modifiedEditText"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:hint="Title"/>
+                    android:hint="@string/login_email_hint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -57,21 +57,28 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
-                    android:id="@+id/edtDescription"
+                    android:id="@+id/edtPassWord"
                     style="@style/modifiedEditText"
-                    android:hint="Description"
+                    android:hint="@string/login_password_hint"
                     android:maxLines="1"
-                    />
+                    android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
+            <TextView
+                android:id="@+id/forgotPassword"
+                style="@style/viewParent"
+                android:text="Forgot Password?"
+                android:textColor="@color/lavender"
+                android:textSize="@dimen/newsMoreTextSize"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/edtSend"
+                android:id="@+id/login_button"
                 style="@style/loginButton"
 
-                android:text="Send"
+                android:text="Login"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
 
