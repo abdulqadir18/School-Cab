@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,39 @@ public class EditStudentDetails extends AppCompatActivity {
     public static final String sId = "sId";
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
+
+    String name1 ;
+    String guardian1  ;
+    String email1  ;
+    String phoneNo1 ;
+    String address1  ;
+    String  defaultAddress1;
+    int page=1;
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        if(page== 2)
+        {
+            LinearLayout container1 = findViewById(R.id.container1);
+            LinearLayout container2 = findViewById(R.id.container2);
+            TextView heading = findViewById(R.id.heading);
+
+
+            container1.setVisibility(View.VISIBLE);
+            container2.setVisibility(View.INVISIBLE);
+            page =1;
+            heading.setText("Update Details \n         page 1");
+
+        }
+        else{
+
+            finish();
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +117,9 @@ public class EditStudentDetails extends AppCompatActivity {
         TextView edtRollNo = findViewById(R.id.edtRollNo);
         edtRollNo.setText( rollNo);
 
+        TextView edtRollNoa = findViewById(R.id.edtenroll);
+        edtRollNoa.setText( rollNo);
+
         EditText edtGuardian = findViewById(R.id.edtGuardian);
         edtGuardian.setText( guardian);
 //
@@ -91,8 +129,11 @@ public class EditStudentDetails extends AppCompatActivity {
         EditText edtAddress = findViewById(R.id.edtAddress);
         edtAddress.setText( address);
 //
-        EditText edtEmail = findViewById(R.id.edtEmail);
+        TextView edtEmail = findViewById(R.id.edtEmail);
         edtEmail.setText( email);
+//
+        TextView edtEmaila = findViewById(R.id.edtEmaila);
+        edtEmaila.setText( email);
 //
         EditText edtDefaultAddress = findViewById(R.id.edtDefaultAddress);
         edtDefaultAddress.setText( defaultAddress);
@@ -113,21 +154,59 @@ public class EditStudentDetails extends AppCompatActivity {
         edtWeight.setText(""+weight);
 
 
+        Button nextButton = findViewById(R.id.nextButton);
+        Button registerButton = findViewById(R.id.register_button);
+        TextView heading = findViewById(R.id.heading);
 
-        Button registerButton = findViewById(R.id.registerButton);
+        nextButton.setOnClickListener(v -> {
+            LinearLayout container1 = findViewById(R.id.container1);
+            LinearLayout container2 = findViewById(R.id.container2);
+
+
+
+            name1 = edtName.getText().toString();
+            guardian1 = edtGuardian.getText().toString();
+            email1 = edtEmail.getText().toString();
+            phoneNo1 = edtPhoneNo.getText().toString();
+            address1 = edtAddress.getText().toString();
+            defaultAddress1 = edtDefaultAddress.getText().toString();
+
+            if(name1.isEmpty()|| guardian1.isEmpty() || email1.isEmpty() || phoneNo1.isEmpty() || address1.isEmpty() || defaultAddress1.isEmpty())
+            {
+                Toast.makeText(EditStudentDetails.this, "Some Field Missing . Please Check", Toast.LENGTH_SHORT).show();
+
+                return;
+            }
+
+            container1.setVisibility(View.INVISIBLE);
+            container2.setVisibility(View.VISIBLE);
+            heading.setText("Update Details \n         page 2");
+            page =2;
+
+
+        });
+
+
+
         registerButton.setOnClickListener(v -> {
             // Collect student details from EditText fields
 
-            String name1 = edtName.getText().toString();
+
             String rollNo1 = edtRollNo.getText().toString();
-            String guardian1 = edtGuardian.getText().toString();
-            String phoneNo1 = edtPhoneNo.getText().toString();
-            String address1 = edtAddress.getText().toString();
-            String  defaultAddress1 = edtDefaultAddress.getText().toString();
-            int standard1 = Integer.parseInt(edtClass.getText().toString());
             String section1  = edtSection.getText().toString();
             String sex1 = edtSex.getText().toString();
-            String email1 = edtEmail.getText().toString();
+            String Age = edtAge.getText().toString();
+            String Weight  = edtWeight.getText().toString();
+            String Standard = edtClass.getText().toString();
+
+
+            if(rollNo1.isEmpty() || section1.isEmpty() || Age.isEmpty() || sex1.isEmpty() || Weight.isEmpty() || Standard.isEmpty())
+            {
+                Toast.makeText(EditStudentDetails.this, "Some Field Missing . Please Check", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+
+            int standard1 = Integer.parseInt(edtClass.getText().toString());
             int age1 = Integer.parseInt(edtAge.getText().toString());
             int weight1 = Integer.parseInt(edtWeight.getText().toString());
 
@@ -164,7 +243,7 @@ public class EditStudentDetails extends AppCompatActivity {
 
                             Intent intent = new Intent(EditStudentDetails.this, StudentAddUpdatePage.class);
                             startActivity(intent);
-
+                            finish();
                             Toast.makeText(EditStudentDetails.this, "Student Updated successfully!", Toast.LENGTH_SHORT).show();
 
                         }
