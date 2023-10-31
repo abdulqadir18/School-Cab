@@ -77,7 +77,9 @@ public class StudentDashBoard extends AppCompatActivity {
         });
 
         trackBus.setOnClickListener(v -> {
-            Toast.makeText(StudentDashBoard.this, "This Functionality is not yet Implemented", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(StudentDashBoard.this, ParentsMaps.class);
+            startActivity(intent);
         });
 
     }

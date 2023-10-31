@@ -67,10 +67,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
-
-<!--    <string name="bus">Bus</string>-->
-<!--    <string name="temp">Temp</string>-->
+    <integer name="google_play_services_version">12451000</integer>
+    <string name="title_activity_parents_maps">ParentsMaps</string>
+    <!--    <string name="bus">Bus</string>-->
+    <!--    <string name="temp">Temp</string>-->
 
 
 </resources>
