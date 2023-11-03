@@ -22,18 +22,22 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.schoolcab.databinding.ActivityParentsMapsBinding;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.common.reflect.TypeToken;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback {
 
@@ -42,6 +46,8 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
     private ActivityParentsMapsBinding binding;
     private List<LatLng> waypoints = new ArrayList<>();
     private FirebaseFirestore db;
+
+    private String jsonString;
 
     private DocumentReference busDocumentRef;
 
@@ -62,6 +68,8 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
 
         updateLocation();
+        jsonString = getIntent().getStringExtra("data");
+
     }
 
 
@@ -110,25 +118,33 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<String, Object>>() {}.getType();
+        Map<String, Object> jsonMap = gson.fromJson(jsonString, type);
+        Map<String, Object> routeMap = (Map<String, Object>) jsonMap.get("Route");
 
-        // Define your origin and destination locations
-        LatLng origin = new LatLng(22.694972609887664, 75.85507878918719);
-        LatLng waypoint2 = new LatLng(22.697939540178428, 75.85481056829039);
+        for (Map.Entry<String, Object> entry : routeMap.entrySet()) {
+            String locationName = entry.getKey();
+            Map<String, Double> locationDetails = (Map<String, Double>) entry.getValue();
 
-        // Create waypoints for multiple stops
-        LatLng waypoint1 = new LatLng(22.708433926544252, 75.85452181616576);
-        LatLng destination = new LatLng(22.718546724823682, 75.8553342465284);
+            double latitude = locationDetails.get("latitude");
+            double longitude = locationDetails.get("longitude");
 
-        // Add markers for the locations
-        mMap.addMarker(new MarkerOptions().position(origin).title("Origin"));
-        mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
-        mMap.addMarker(new MarkerOptions().position(waypoint1).title("Waypoint 1"));
-        mMap.addMarker(new MarkerOptions().position(waypoint2).title("Waypoint 2"));
+            LatLng waypoint = new LatLng(latitude, longitude);
+            mMap.addMarker(new MarkerOptions().position(waypoint).title(locationName));
+            waypoints.add(waypoint);
+            System.out.println("here is Location: " + locationName + " : " + latitude+" " +longitude);
+            System.out.println("Latitude: " + latitude);
+            System.out.println("Longitude: " + longitude);
+            System.out.println();
+        }
 
-        Log.d("check map ", "onMapReady: I am here and you ");
-        waypoints.add(waypoint1);
-        waypoints.add(waypoint2);
-        drawRoute(waypoints , origin , destination);
+
+
+
+
+        drawRoute(waypoints , waypoints.get(0) , waypoints.get(waypoints.size()-1));
+
 
     }
 

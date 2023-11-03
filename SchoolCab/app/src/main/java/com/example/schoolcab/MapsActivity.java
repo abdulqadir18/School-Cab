@@ -38,6 +38,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.schoolcab.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.PendingResult;
@@ -48,8 +50,10 @@ import com.google.maps.model.TravelMode;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener  {
 
@@ -61,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private List<LatLng> waypoints = new ArrayList<>();
     private  Marker marker;
+    String jsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+          jsonString = getIntent().getStringExtra("data");
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -101,23 +109,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
 
-        // Define your origin and destination locations
-        LatLng origin = new LatLng(22.694972609887664, 75.85507878918719);
-        LatLng waypoint2 = new LatLng(22.697939540178428, 75.85481056829039);
+        Log.d("hello Mister", "onMapReady: " + jsonString);
 
-        // Create waypoints for multiple stops
-        LatLng waypoint1 = new LatLng(22.708433926544252, 75.85452181616576);
-        LatLng destination = new LatLng(22.718546724823682, 75.8553342465284);
+       Gson gson = new Gson();
+        Type type = new TypeToken<Map<String, Object>>() {}.getType();
+        Map<String, Object> jsonMap = gson.fromJson(jsonString, type);
+        Map<String, Object> routeMap = (Map<String, Object>) jsonMap.get("Route");
 
-        // Add markers for the locations
-        mMap.addMarker(new MarkerOptions().position(origin).title("Origin"));
-        mMap.addMarker(new MarkerOptions().position(destination).title("Destination"));
-        mMap.addMarker(new MarkerOptions().position(waypoint1).title("Waypoint 1"));
-        mMap.addMarker(new MarkerOptions().position(waypoint2).title("Waypoint 2"));
+        for (Map.Entry<String, Object> entry : routeMap.entrySet()) {
+            String locationName = entry.getKey();
+            Map<String, Double> locationDetails = (Map<String, Double>) entry.getValue();
 
-        waypoints.add(waypoint1);
-        waypoints.add(waypoint2);
-        drawRoute(waypoints , origin , destination);
+            double latitude = locationDetails.get("latitude");
+            double longitude = locationDetails.get("longitude");
+
+            LatLng waypoint = new LatLng(latitude, longitude);
+            mMap.addMarker(new MarkerOptions().position(waypoint).title(locationName));
+            waypoints.add(waypoint);
+            System.out.println("here is Location: " + locationName + " : " + latitude+" " +longitude);
+            System.out.println("Latitude: " + latitude);
+            System.out.println("Longitude: " + longitude);
+            System.out.println();
+        }
+
+
+
+
+
+        drawRoute(waypoints , waypoints.get(0) , waypoints.get(waypoints.size()-1));
 
 
 
@@ -136,9 +155,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (LatLng waypoint : waypoints) {
             waypointsStr += waypoint.latitude + "," + waypoint.longitude + "|";
         }
+
         waypointsStr = waypointsStr.substring(0, waypointsStr.length() - 1); // Remove the last "|"
 
-        String url = baseUrl + origin + "&" + destination + "&" + waypointsStr + "&key=" + "AIzaSyCvYIr3HZ11x0Z9HZrhdYT7YuxGv-wGvoQ";
+
+
+        String url = baseUrl + origin + "&" +destination + "&" + waypointsStr + "&key=" + "AIzaSyCvYIr3HZ11x0Z9HZrhdYT7YuxGv-wGvoQ";
 
         // Use Volley to make an HTTP request to the Directions API
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -152,6 +174,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        System.out.println("here is Location: " + error.getMessage());
+
                         Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -247,7 +271,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Add a marker at the current location
          marker =   mMap.addMarker(new MarkerOptions().position(latLng).title("You are here"));
 
-            Log.d("location", "onLocationChanged: " + latLng);
+         Log.d("location", "onLocationChanged: " + latLng);
 
             // Move the camera to the current location
             CameraPosition cameraPosition = new CameraPosition.Builder()
