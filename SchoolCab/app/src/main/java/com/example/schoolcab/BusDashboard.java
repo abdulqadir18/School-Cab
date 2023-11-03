@@ -128,6 +128,9 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
     @Override
     public void onLocationChanged(Location location) {
 
+
+
+
         Log.d("here i am ", "here");
 
 
@@ -136,11 +139,16 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
 
             Log.d("location", "onLocationChanged: " + latLng);
 
-          String busId = getIntent().getStringExtra("busid");
+
             CollectionReference busCollection = db.collection("bus");
         Map<String, Object> updateData = new HashMap<>();
         updateData.put("location", latLng);
-        busCollection.document("Ed8b6yjYDIQYgPxUCFFfHwgeEkw2").update(updateData);
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        String busId = sharedpreferences.getString("busId", null);
+
+
+        busCollection.document(busId).update(updateData);
+
 
         }
 

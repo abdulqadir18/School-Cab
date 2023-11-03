@@ -64,6 +64,7 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
         updateLocation();
     }
 
+
     public void updateLocation(){
          busDocumentRef = db.collection("bus").document("Ed8b6yjYDIQYgPxUCFFfHwgeEkw2");
 
@@ -124,13 +125,10 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
         mMap.addMarker(new MarkerOptions().position(waypoint1).title("Waypoint 1"));
         mMap.addMarker(new MarkerOptions().position(waypoint2).title("Waypoint 2"));
 
+        Log.d("check map ", "onMapReady: I am here and you ");
         waypoints.add(waypoint1);
         waypoints.add(waypoint2);
         drawRoute(waypoints , origin , destination);
-
-
-
-
 
     }
 
@@ -142,12 +140,15 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
         String origin = "origin=" + orign.latitude + "," + orign.longitude;
         String destination = "destination=" + destntion.latitude + "," + destntion.longitude;
         String waypointsStr = "waypoints=optimize:true|";
+
+        Log.d("check map ", "onMapReady: I am here and you 1 ");
+
         for (LatLng waypoint : waypoints) {
             waypointsStr += waypoint.latitude + "," + waypoint.longitude + "|";
         }
         waypointsStr = waypointsStr.substring(0, waypointsStr.length() - 1); // Remove the last "|"
 
-        String url = baseUrl + origin + "&" + destination + "&" + waypointsStr + "&key=" + "AIzaSyCvYIr3HZ11x0Z9HZrhdYT7YuxGv-wGvoQ";
+        String url = baseUrl + origin + "&" + destination + "&" + waypointsStr + "&key=" + "AIzaSyATEUXqtwozS2BoOaNh1LOvla_SfQXSZFE";
 
         // Use Volley to make an HTTP request to the Directions API
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -167,6 +168,8 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
 
         // Add the request to the queue
         Volley.newRequestQueue(this).add(request);
+        Log.d("check map ", "onMapReady: I am here and you 3 ");
+
     }
 
     // Function to draw the route from JSON response
@@ -188,6 +191,8 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
 
             // Move the camera to show the entire route
             mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds(points), 50));
+            Log.d("check map ", "onMapReady: I am here and you 4 " + response);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -222,6 +227,8 @@ public class ParentsMaps extends FragmentActivity implements OnMapReadyCallback 
             LatLng point = new LatLng((lat / 1E5), (lng / 1E5));
             poly.add(point);
         }
+        Log.d("check map ", "onMapReady: I am here and you 5 ");
+
         return poly;
     }
 
