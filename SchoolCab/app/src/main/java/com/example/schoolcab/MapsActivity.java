@@ -133,9 +133,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-
-
-
         drawRoute(waypoints , waypoints.get(0) , waypoints.get(waypoints.size()-1));
 
 
@@ -157,7 +154,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         waypointsStr = waypointsStr.substring(0, waypointsStr.length() - 1); // Remove the last "|"
-
 
 
         String url = baseUrl + origin + "&" +destination + "&" + waypointsStr + "&key=" + "AIzaSyCvYIr3HZ11x0Z9HZrhdYT7YuxGv-wGvoQ";
