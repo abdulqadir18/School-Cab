@@ -1,5 +1,7 @@
 package com.example.schoolcab;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,14 +22,22 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.Manifest;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +50,7 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
     // variable for shared preferences.
     SharedPreferences sharedpreferences;
 
+    String jsonString;
 
     private LocationManager locationManager;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
@@ -83,17 +94,23 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
 //        Getting the school id saved in local preferences
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String schoolID = sharedpreferences.getString("sId", null);
+//        String busId = sharedpreferences.getString("busId" , null);
+
 
         RelativeLayout attendance = findViewById(R.id.attendance_button);
         RelativeLayout busTracking = findViewById(R.id.bus_button);
         RelativeLayout logoutButton = findViewById(R.id.logout_button);
         RelativeLayout notification = findViewById(R.id.notification_button);
 
+        getRoute("Ed8b6yjYDIQYgPxUCFFfHwgeEkw2");
+
+
         attendance.setOnClickListener(v -> {
             Intent intent = new Intent(BusDashboard.this, AttendanceTypeActivity.class);
             startActivity(intent);
 
         });
+
         logoutButton.setOnClickListener(v -> {
             mAuth.signOut();
 
@@ -108,10 +125,9 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
         });
 
         busTracking.setOnClickListener(v -> {
-            String busId = getIntent().getStringExtra("busid");
-            String schoolId = getIntent().getStringExtra("schoolid");
 
             Intent intent = new Intent(BusDashboard.this, MapsActivity.class);
+            intent.putExtra("data", jsonString);
             startActivity(intent);
         });
         notification.setOnClickListener(v -> {
@@ -123,10 +139,46 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
 
     }
 
+    public void getRoute(String busId)
+    {
+        Log.d(TAG, "starting to get Route ");
+        CollectionReference busCollection = db.collection("bus");
+        busCollection.document(busId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                // The document exists, you can access its data
+                                Log.d(TAG, String.format(document.getId() + " onComplete: Bus Data " + document.getData().get("Route").getClass().getName()));
+
+                                // If you want to convert the data to JSON
+                                  jsonString = new Gson().toJson(document.getData());
+
+                            } else {
+                                // The document does not exist
+                                Log.d(TAG, "Document does not exist.");
+                                Toast.makeText(BusDashboard.this, "Document not found", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting document: " + task.getException());
+                        }
+                    }
+                });
+
+    }
+
+
+
+
 
     @SuppressLint("RestrictedApi")
     @Override
     public void onLocationChanged(Location location) {
+
+
+
 
         Log.d("here i am ", "here");
 
@@ -136,11 +188,16 @@ public class BusDashboard extends AppCompatActivity implements LocationListener 
 
             Log.d("location", "onLocationChanged: " + latLng);
 
-          String busId = getIntent().getStringExtra("busid");
+
             CollectionReference busCollection = db.collection("bus");
         Map<String, Object> updateData = new HashMap<>();
         updateData.put("location", latLng);
-        busCollection.document("Ed8b6yjYDIQYgPxUCFFfHwgeEkw2").update(updateData);
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        String busId = sharedpreferences.getString("busId", null);
+
+
+        busCollection.document(busId).update(updateData);
+
 
         }
 
